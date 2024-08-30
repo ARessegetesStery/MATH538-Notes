@@ -3,11 +3,60 @@
 
 \begin{document}
 
-\Makepagesectionhead{MATH 538}{}{ARessegetes Stery}
+\Makepagesectionhead{MATH 538}{Lie Algebra}{ARessegetes Stery}
 
 \tableofcontents  
 \clearpage
 
-Hi
+\section{Lie Algebra}
+
+\begin{definition}[Lie Algebra]
+    Let $\F$ be a field. A \textbf{Lie Algebra} is a vector space $L$ over $\F$ equipped with a bilinear map $[\cdot, \cdot]: L \times L \to L$ (the \textbf{Lie Bracket}) satisfying the following properties:
+    \begin{itemize}
+        \item \emph{Alternating Property}: $[x, x] = 0$ for all $x \in L$. (For $\fchar{\F} \neq 2$, this is equivalent to \underline{antisymmetry}: $[x, y] = -[y, x]$ for all $x, y \in L$.)
+        \item \emph{Jacobi Identity}: $[x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0$ for all $x, y, z \in L$.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    Consider $V = \F^n$. Notice that $\dim (\End(V)) = \dim(\Mat_n(\F)) = n^2$ as vector spaces over $\F$; and they are further isomorphic. We can further show that they are isomorphic as Lie algebras. 
+\end{example}
+
+\begin{proposition}
+    Define the Lie bracket on $\End(V)$ by $[f, g] = fg - gf$ (with the product the composition of functions). Then $\End(V)$ is a Lie Algebra.
+\end{proposition}
+
+\begin{proof}
+    It suffices to verify that Lie bracket satisfies the alternating property and the Jacobi identity. 
+    \begin{itemize}
+        \item \emph{Alternating Property}: $[f, f] = ff - ff = 0$.
+        \item \emph{Jacobi Identity}: 
+        \begin{align*}
+            [f, [g, h]] + [g, [h, f]] + [h, [f, g]] &= [f, gh - hg] + [g, hf - fh] + [h, fg - gf] \\
+            &= f(gh - hg) - (gh - hg)f + g(hf - fh) - (hf - fh)g + h(fg - gf) - (fg - gf)h \\
+            &= fgh - fgh - ghf + hgf + ghf - hfg - hfg + fhg + fhg - fgh - gfh + gfh \\
+            &= 0.
+        \end{align*}
+    \end{itemize}
+    Bi-linearity results directly from the linearity of functions.
+\end{proof}
+
+\begin{notation}
+    The Lie algebra $(\End(V), [\cdot, \cdot])$ is denoted by $\liealg{gl}(V)$.
+\end{notation}
+\nogap
+\begin{example}
+    Let $V = \R^n$. Then as vector spaces $\End(V) \simeq \Mat_n(\R) \simeq \liealg{gl}(V)$ where $[A, B] = AB - BA$ for $A, B \in \Mat_n(\R)$.
+\end{example}
+
+\begin{definition}[Lie Subalgebra]
+    A \textbf{Lie Subalgebra} $K \subseteq L$ is a subspace of s.t. for all $x, y \in K$, $[x, y] \in K$.
+\end{definition}
+\nogap
+\begin{definition}[Linear Algebra]
+    Any subalgebra of $\liealg{gl}(V)$ is called a \textbf{linear algebra}.
+\end{definition}
+
+\section{An Algebraic Perspective on Lie Algebra}
 
 \end{document}
