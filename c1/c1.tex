@@ -16,10 +16,15 @@
         \item \emph{Alternating Property}: $[x, x] = 0$ for all $x \in L$. (For $\fchar{\F} \neq 2$, this is equivalent to \underline{antisymmetry}: $[x, y] = -[y, x]$ for all $x, y \in L$.)
         \item \emph{Jacobi Identity}: $[x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0$ for all $x, y, z \in L$.
     \end{itemize}
+    \ 
 \end{definition}
+\nogap
+\begin{remark}
+    Throughout this note, for simplicity we will assume that $\fchar{\F} = 0$. Nevertheless, the limitations on field characteristics will be pointed out when it is clear that the result will fall in certain cases.
+\end{remark}
 
 \begin{example}
-    Consider $V = \F^n$. Notice that $\dim (\End(V)) = \dim(\Mat_n(\F)) = n^2$ as vector spaces over $\F$; and they are further isomorphic. We can further show that they are isomorphic as Lie algebras. 
+    Consider $V = \F^n$. Notice that $\dim_\F (\End(V)) = \dim_\F (\Mat_n(\F)) = n^2$ as vector spaces over $\F$; and they are further isomorphic. We can further show that they are isomorphic as Lie algebras. 
 \end{example}
 
 \begin{proposition}
@@ -49,14 +54,125 @@
     Let $V = \R^n$. Then as vector spaces $\End(V) \simeq \Mat_n(\R) \simeq \liealg{gl}(V)$ where $[A, B] = AB - BA$ for $A, B \in \Mat_n(\R)$.
 \end{example}
 
+The Lie Algebra $\End(V) \simeq \Mat_n(V) \simeq \liealg{gl}(V)$ has a basis $\{ e_{ij} \}_{i, j = 1}^n$, where $\{e_{ij}\}$ represents the matrix with all zero entries except for $1$ in the $(i, j)$-th entry.
+
 \begin{definition}[Lie Subalgebra]
     A \textbf{Lie Subalgebra} $K \subseteq L$ is a subspace of s.t. for all $x, y \in K$, $[x, y] \in K$.
 \end{definition}
 \nogap
-\begin{definition}[Linear Algebra]
-    Any subalgebra of $\liealg{gl}(V)$ is called a \textbf{linear algebra}.
+\begin{definition}[Linear Lie Algebra]
+    Any subalgebra of $\liealg{gl}(V)$ is called a \textbf{linear Lie algebra}.
 \end{definition}
 
-\section{An Algebraic Perspective on Lie Algebra}
+\begin{theorem}[Ado-Iwasawa]\label{thm:ado-iwasawa}
+    Every finite dimensional Lie algebra is isomorphic to a linear Lie algebra.
+\end{theorem}
+
+The proof of this statement requires more structure and will be deferred; for now we will use this results without proof as this theorem is really powerful.
+
+\TODO{search for proof}
+
+\begin{example}[Classical Lie Algebra]
+    The following examples of Lie algebra constitute the \textbf{classical Lie algebra} which are the bulk of existing Lie algebras. As expected, they are closely related to matrices.
+    \begin{enumerate}
+        \item Let $V = \F^{n+1}$. The \textbf{special linear algebra} $A_n$ is
+        \[
+            A_n = \liealg{sl}_{n+1}(V) = \{ g \in \liealg{gl}_{n+1}(V) \mid \Tr{g} = 0 \}
+        \]
+        As a vector space over $\F$ it has dimension $(n^2 + 2n)$.
+        \item Let $V = \F^{2n}$. The \textbf{symplectic algebra} $C_n$ is
+        \[
+            C_n = \liealg{sp}_{2n}(V) = \{ g \in \liealg{gl}_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ -\Id_n & 0 \end{pmatrix}
+        \]
+        Considering its dimension, writing also $g \in \liealg{gl}_{2n}(V)$ as $n$-by-$n$ blocks, we have
+        \[
+            g = 
+            \left(\begin{array}{c|c}
+                g_1 & g_2 \\
+                \hline
+                g_3 & g_4
+            \end{array}\right)
+            \quad
+            \implies
+            \quad
+            sg + g^T s = 
+            \left(\begin{array}{c|c}
+                g_3 - g_3^T & g_4 + g_1^T \\
+                \hline
+                g_1 + g_4^T & g_2 - g_2^T
+            \end{array}\right)
+            = 0
+        \]
+        Further notice that $(g_4 + g_1^T) = (g_1 + g_4^T)^T$. Then the condition of matrix vanishing becomes equivalent to $g_3 = g_3^T$, $g_2 = -g_2^T$ and $g_1 = -g_4^T$. For a symmetric matrix its dimension is $\frac{1}{2}n(n+1)$, and arbitrary $g_1$ fixes $g_4$, giving dimension $n$. Summing together gives the $\dim_\F C_n = 2n^2 + n$.
+        \item Let $V = \F^{2n+1}$. The \textbf{(odd) orthogonal algebra} $B_n$ is
+        \[
+            B_n = \liealg{o}_{2n+1}(V) = \{ g \in \liealg{gl}_{2n+1}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & \Id_n \\ 0 & \Id_n & 0 \end{pmatrix}
+        \]
+        Considering its dimension, write also $g \in \liealg{gl}_{2n+1}(V)$ in block form:
+        \[
+            g = 
+            \begin{pmatrix}
+                x              & a_{1 \times n} & b_{1 \times n} \\
+                c_{n \times 1} & m_{n \times n} & n_{n \times n} \\
+                d_{n \times 1} & p_{n \times n} & q_{n \times n}
+            \end{pmatrix}
+            \quad
+            \implies
+            \quad
+            sg + g^T s =
+            \begin{pmatrix}
+                2x      & a + d^T & b + c^T \\
+                a^T + d & p + p^T & q + m^T \\
+                b^T + c & m + q^T & n + n^T
+            \end{pmatrix}
+            = 0
+        \]
+        This translates to equalities
+        \[
+            2x = 0, \quad
+            a + d^T = (a^T + d)^T = 0, \quad
+            b + c^T = (b^T + c)^T = 0, \quad
+            q + m^T = (m + q^T)^T = 0, \quad 
+            p + p^T = 0, \quad
+            n + n^T = 0
+        \]
+        This gives $x = 0$. Fixing $a$ and $b$ fixes $d$ and $c$, of which there are $2n$ choices. Fixing $m$ fixes $q$, of which there are $n^2$ choices. It is also required that both $n$ and $p$ are anti-symmetric matrices, i.e. they have zeros on the diagonal, and fixing upper triangle elements fixes the whole matrix, of which there are $\frac{1}{2}n(n-1)$ choices. Then
+        \[
+            \dim_\F B_n = 2n + n^2 + 2 \cdot \frac{1}{2} n(n-1) = 2n^2 + n
+        \]
+        \item Let $V = \F^{2n}$. The \textbf{(even) orthogonal algebra} $D_n$ is
+        \[
+            D_n = \liealg{o}_{2n}(V) = \{ g \in \liealg{gl}_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ \Id_n & 0 \end{pmatrix}
+        \]
+        Considering its dimension, use the similar strategy as above. Write $g \in \liealg{gl}_{2n}(V)$ in block form:
+        \[
+            g = 
+            \begin{pmatrix}
+                m & n \\
+                p & q
+            \end{pmatrix}
+            \quad \implies \quad
+            sg + g^T s =
+            \begin{pmatrix}
+                p + p^T & q + m^T \\
+                m + q^T & n + n^T
+            \end{pmatrix}
+            = 0
+        \]
+        The equality translates to the following conditions
+        \[
+            p + p^T = 0, \quad
+            q + m^T = (m + q^T)^T = 0, \quad
+            n + n^T = 0
+        \]
+        Fixing $p$ fixes $m$, and both $p$ and $n$ are anti-symmetric matrices, which have dimension $\frac{1}{2}n(n-1)$ over $\F$. This gives
+        \[
+            \dim_\F D_n = n^2 + 2 \cdot \frac{1}{2}n(n-1) = 2n^2 - n
+        \] 
+    \end{enumerate}
+    \ 
+\end{example}
+
+\section{Solvable and Nilpotent Lie Algebra}
 
 \end{document}
