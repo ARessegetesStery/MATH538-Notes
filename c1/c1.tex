@@ -8,10 +8,10 @@
 \tableofcontents  
 \clearpage
 
-\section{Lie Algebra}
+\section{Lie Algebras}
 
 \begin{definition}[Lie Algebra]
-    Let $\F$ be a field. A \textbf{Lie Algebra} is a vector space $L$ over $\F$ equipped with a bilinear map $[\cdot, \cdot]: L \times L \to L$ (the \textbf{Lie Bracket}) satisfying the following properties:
+    Let $\F$ be a field. A \textbf{Lie Algebra} is a vector space $L$ over $\F$ equipped with a bilinear map $[\cdot, \cdot]: L \times L \to L$ (the \textbf{Lie bracket}) satisfying the following properties:
     \begin{itemize}
         \item \emph{Alternating Property}: $[x, x] = 0$ for all $x \in L$. (For $\fchar{\F} \neq 2$, this is equivalent to \underline{antisymmetry}: $[x, y] = -[y, x]$ for all $x, y \in L$.)
         \item \emph{Jacobi Identity}: $[x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0$ for all $x, y, z \in L$.
@@ -72,7 +72,7 @@ The proof of this statement requires more structure and will be deferred; for no
 
 \TODO{search for proof}
 
-\begin{example}[Classical Lie Algebra]
+\begin{example}[Classical Lie Algebra]\label{ex: classical Lie algebra}
     The following examples of Lie algebra constitute the \textbf{classical Lie algebra} which are the bulk of existing Lie algebras. As expected, they are closely related to matrices.
     \begin{enumerate}
         \item Let $V = \F^{n+1}$. The \textbf{special linear algebra} $A_n$ is
@@ -173,6 +173,109 @@ The proof of this statement requires more structure and will be deferred; for no
     \ 
 \end{example}
 
-\section{Solvable and Nilpotent Lie Algebra}
+\section{Structure of Lie Algebras}
+
+\textstart
+Now we turn to discuss the algebraic structures of Lie algebra. Being an algebra itself, we are interested in some special properties, analogous to the study of groups or rings. In general, some of the definitions and theorems can be rephrased in a categorical sense, and thereby applies to all such similar structures.
+
+\begin{definition}[$\F$-Algebra]
+    Let $\F$ be a field. An $\F$-algebra is a vector space $U$ over $\F$ equipped with a bilinear map $(\cdot): U \times U \to U$, denoted $(u_1, u_2) \mapsto u_1 u_2$.
+\end{definition}
+\nogap
+\begin{remark}
+    In this sense, the Lie algebra $L$ (by definition is an $\F$-vector space) is indeed an $\F$-algebra (compatible with its name), with the bilinear map $(\cdot)$ being the Lie bracket.
+\end{remark}
+
+\begin{definition}[Derivation]
+    Let $U$ be a vector space over field $\F$. A \textbf{derivation} of $U$ is $S \in \liealg{gl}(U)$ s.t. for all $a, b \in U$, $S(ab) = a S(b) + S(a) b$ (i.e. satisfies the \underline{Leibniz Rule}). The set of derivations on $U$ is denoted by $\Der(U)$.
+\end{definition}
+
+\begin{remark}
+    $\Der(U)$ is a subalgebra of $\liealg{gl}(U)$. By definition, it suffices to verify that for all $S, T \in \Der(U)$, $[S, T] \in \Der(U)$. Check that the Leibniz rule is satisfied:
+    \begin{align*}
+        [S, T](ab) &= S(T(ab)) - T(S(ab)) \\
+        & = S(aT(b) + T(a)b) - T(aS(b) + S(a)b) \\
+        & = aS(T(b)) + bS(T(a)) - aT(S(b)) - bT(S(a)) \\
+        & = a[S, T](b) + b[S, T](a)
+    \end{align*}
+\end{remark}
+
+\begin{definition}[Adjoint Representation]
+    The map $\ad: L \to \Der(L)$ is the \textbf{adjoint representation}, defined by $\ad(x)(y) = [x, y]$
+\end{definition}
+
+\textstart
+An immediate thought is to verify that indeed $\ad(x)$ gives a derivation. Recall that the product defined in Lie algebra is the Lie bracket. Therefore, to verify the derivation property it suffices to check whether we have the equality
+\[
+    \ad(x)([y, z]) = [\ad(x)(y), z] + [y, \ad(x)(z)]
+\]
+Applying the definition and manipulating the terms, we get the Jacobi Identity, which verifies the equality:
+\begin{align*}
+    \ad(x)([y, z])
+    & = [x, [y, z]] = -[y, [z, x]] - [z, [x, y]] = -[y, \ad(x)(z)] - [z, \ad(x)(y)] \\
+    & = [\ad(x)(y), z] + [y, \ad(x)(z)]
+\end{align*}
+
+\begin{definition}[Structure Constants]
+    Let $\{x_1, \dots, x_n\}$ be a basis of $L$ as an $\F$-vector space. The \textbf{structure constants} of $L$ are the coefficients $c_{ij}^k$ s.t. $[x_i, x_j] = \sum_{k = 1}^n c_{ij}^k x_k$.
+\end{definition}
+
+\textstart
+It is clear that the structure constants are specified solely by the definition of Lie bracket, which is the sole extra structure given to any Lie algebra apart from the underlying vector space structure.
+
+\begin{remark}
+    Using the structure constants we can rewrite the Jacobi Identity. Given a basis of $L$ over $\F$ and its corresponding structure constants $a_{ij}^k \in \F$, the Jacobi Identity can be written as
+    \[
+        \sum_{k = 1}^n \left( a_{ij}^k a_{k \ell}^m + a_{j\ell}^k a_{ki}^m + a_{\ell i}^k a_{kj}^m \right) = 0, \quad \forall i, j, \ell, m \in \{1, \dots, n\}
+    \]
+\end{remark}
+
+\begin{definition}[Abelian]
+    A Lie algebra $L$ is \textbf{abelian} if $[x, y] = 0$ for all $x, y \in L$.
+\end{definition}
+
+\begin{definition}[Ideal]
+    Given a Lie algebra $L$, a subspace $I \subseteq L$ is an \textbf{ideal} if for all $x \in I$ and $y \in L$, $[x, y] \in I$.
+\end{definition}
+\nogap
+\begin{remark}
+    This kind of ``absorbing'' property is analogous to the normal subgroup in group theory. Considering the Lie bracket as a multiplication on a ring, this is compatible with the definition of an ideal in a ring.
+\end{remark}
+\nogap
+\begin{remark}
+    Given a Lie algebra $L$, if both $I$ and $J$ are ideals in $L$, then $I + J$, $I \cap J$ and $[I, J]$ are also ideals.
+\end{remark}
+
+\textstart
+With the similar formulation of structure preserving sub-objects, we have similar structures as in group or ring theory.
+
+\begin{definition}[Quotient]
+    Given a Lie algebra $L$ and an ideal $I \subseteq L$, the \textbf{quotient} $L/I$ is the vector space $L/I = \{ x + I \mid x \in L \}$ with the Lie bracket $[x + I, y + I] = [x, y] + I$.
+\end{definition}
+\nogap
+\begin{definition}[Center]
+    Given a Lie algebra $L$, the \textbf{center} of $L$ is defined as $Z(L) = \{ z \in L \mid [z, x] = 0 \text{ for all } x \in L \}$.
+\end{definition}
+\nogap
+\begin{definition}[Derived Algebra]
+    Given a Lie algebra $L$, the \textbf{derived algebra} of $L$ is $[L, L] = L' = L^{(1)}$, where $[L, L]$ can be interpreted as the set $[L, L] := \{ [x, y] \mid x, y \in L \}$
+    By definition this is an ideal of $L$.
+\end{definition}
+\nogap
+\begin{definition}[Simple]
+    A Lie algebra $L$ is \textbf{simple} if $[L, L] \neq 0$ (i.e. it is non-trivial), and the only ideals of $L$ are trivial ($0$ and $L$).
+\end{definition}
+
+\begin{example}
+    Let $L = \liealg{gl}_n(\F)$. Then $[e_{ij}, e_{k\ell}] = \delta_{jk} e_{i \ell} - \delta_{\ell i} e_{kj}$. Setting $k = j$ and $i = \ell$ gives $\Tr([e_{ij}, e_{k\ell}]) = 0$. By definitions in Example \ref{ex: classical Lie algebra}, $L' = [L, L] \simeq \liealg{sl}_n(F)$. Since specifically $\liealg{sl}_n(\F) \subseteq \liealg{gl}_n(\F)$ which gives an ideal, $\liealg{gl}_n(\F)$ is not simple. In fact $\liealg{sl}_n(\F)$ is simple, but proving this result requires more constructions.
+\end{example}
+
+\begin{definition}[Normalizer]
+    Let $L$ be a Lie algebra and $K$ a subalgebra of $L$. The \textbf{normalizer} of $K$ is defined by $N_L(K) := \{ x \in L \mid [x, K] \subseteq K \}$, the largest subalgebra of $L$ in which $K$ is an ideal.
+\end{definition}
+\nogap
+\begin{definition}[Centralizer]
+    Let $L$ be a Lie algebra and $X$ an arbitrary set. The \textbf{centralizer} of $X$ is defined by $C_L(X) := \{ x \in L \mid [x, X] = 0 \}$.
+\end{definition}
 
 \end{document}
