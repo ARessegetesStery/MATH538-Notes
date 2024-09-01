@@ -16,7 +16,7 @@
         \item \emph{Alternating Property}: $[x, x] = 0$ for all $x \in L$. (For $\fchar{\F} \neq 2$, this is equivalent to \underline{antisymmetry}: $[x, y] = -[y, x]$ for all $x, y \in L$.)
         \item \emph{Jacobi Identity}: $[x, [y, z]] + [y, [z, x]] + [z, [x, y]] = 0$ for all $x, y, z \in L$.
     \end{itemize}
-    \ 
+    The \textbf{dimension} of a Lie algebra is the dimension of the underlying vector space.
 \end{definition}
 \nogap
 \begin{remark}
@@ -47,28 +47,29 @@
 \end{proof}
 
 \begin{notation}
-    The Lie algebra $(\End(V), [\cdot, \cdot])$ is denoted by $\liealg{gl}(V)$.
+    The Lie algebra $(\End(V), [\cdot, \cdot])$ is denoted by $\gl(V)$.
 \end{notation}
 \nogap
 \begin{example}
-    Let $V = \R^n$. Then as vector spaces $\End(V) \simeq \Mat_n(\R) \simeq \liealg{gl}(V)$ where $[A, B] = AB - BA$ for $A, B \in \Mat_n(\R)$.
+    Let $V = \R^n$. Then as vector spaces $\End(V) \simeq \Mat_n(\R) \simeq \gl(V)$ where $[A, B] = AB - BA$ for $A, B \in \Mat_n(\R)$.
 \end{example}
 
-The Lie Algebra $\End(V) \simeq \Mat_n(V) \simeq \liealg{gl}(V)$ has a basis $\{ e_{ij} \}_{i, j = 1}^n$, where $\{e_{ij}\}$ represents the matrix with all zero entries except for $1$ in the $(i, j)$-th entry.
+The Lie Algebra $\End(V) \simeq \Mat_n(V) \simeq \gl(V)$ has a basis $\{ e_{ij} \}_{i, j = 1}^n$, where $\{e_{ij}\}$ represents the matrix with all zero entries except for $1$ in the $(i, j)$-th entry.
 
 \begin{definition}[Lie Subalgebra]
     A \textbf{Lie Subalgebra} $K \subseteq L$ is a subspace of s.t. for all $x, y \in K$, $[x, y] \in K$.
 \end{definition}
 \nogap
-\begin{definition}[Linear Lie Algebra]
-    Any subalgebra of $\liealg{gl}(V)$ is called a \textbf{linear Lie algebra}.
+\begin{definition}[Linear Lie Algebra]\label{def: linear lie algebra}
+    Any subalgebra of $\gl(V)$ is called a \textbf{linear Lie algebra}.
 \end{definition}
 
 \begin{theorem}[Ado-Iwasawa]\label{thm:ado-iwasawa}
     Every finite dimensional Lie algebra is isomorphic to a linear Lie algebra.
 \end{theorem}
 
-The proof of this statement requires more structure and will be deferred; for now we will use this results without proof as this theorem is really powerful.
+\textstart
+The proof of this statement requires more structure and will be deferred.
 
 \TODO{search for proof}
 
@@ -77,14 +78,14 @@ The proof of this statement requires more structure and will be deferred; for no
     \begin{enumerate}
         \item Let $V = \F^{n+1}$. The \textbf{special linear algebra} $A_n$ is
         \[
-            A_n = \liealg{sl}_{n+1}(V) = \{ g \in \liealg{gl}_{n+1}(V) \mid \Tr{g} = 0 \}
+            A_n = \liealg{sl}_{n+1}(V) = \{ g \in \gl_{n+1}(V) \mid \Tr{g} = 0 \}
         \]
         As a vector space over $\F$ it has dimension $(n^2 + 2n)$.
         \item Let $V = \F^{2n}$. The \textbf{symplectic algebra} $C_n$ is
         \[
-            C_n = \liealg{sp}_{2n}(V) = \{ g \in \liealg{gl}_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ -\Id_n & 0 \end{pmatrix}
+            C_n = \liealg{sp}_{2n}(V) = \{ g \in \gl_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ -\Id_n & 0 \end{pmatrix}
         \]
-        Considering its dimension, writing also $g \in \liealg{gl}_{2n}(V)$ as $n$-by-$n$ blocks, we have
+        Considering its dimension, writing also $g \in \gl_{2n}(V)$ as $n$-by-$n$ blocks, we have
         \[
             g = 
             \left(\begin{array}{c|c}
@@ -106,9 +107,9 @@ The proof of this statement requires more structure and will be deferred; for no
         Further notice that $(g_4 + g_1^T) = (g_1 + g_4^T)^T$. Then the condition of matrix vanishing becomes equivalent to $g_3 = g_3^T$, $g_2 = -g_2^T$ and $g_1 = -g_4^T$. For a symmetric matrix its dimension is $\frac{1}{2}n(n+1)$, and arbitrary $g_1$ fixes $g_4$, giving dimension $n$. Summing together gives the $\dim_\F C_n = 2n^2 + n$.
         \item Let $V = \F^{2n+1}$. The \textbf{(odd) orthogonal algebra} $B_n$ is
         \[
-            B_n = \liealg{o}_{2n+1}(V) = \{ g \in \liealg{gl}_{2n+1}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & \Id_n \\ 0 & \Id_n & 0 \end{pmatrix}
+            B_n = \liealg{o}_{2n+1}(V) = \{ g \in \gl_{2n+1}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 0 & \Id_n \\ 0 & \Id_n & 0 \end{pmatrix}
         \]
-        Considering its dimension, write also $g \in \liealg{gl}_{2n+1}(V)$ in block form:
+        Considering its dimension, write also $g \in \gl_{2n+1}(V)$ in block form:
         \[
             g = 
             \begin{pmatrix}
@@ -142,9 +143,9 @@ The proof of this statement requires more structure and will be deferred; for no
         \]
         \item Let $V = \F^{2n}$. The \textbf{(even) orthogonal algebra} $D_n$ is
         \[
-            D_n = \liealg{o}_{2n}(V) = \{ g \in \liealg{gl}_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ \Id_n & 0 \end{pmatrix}
+            D_n = \liealg{o}_{2n}(V) = \{ g \in \gl_{2n}(V) \mid sg + g^T s = 0 \}, \quad \text{where } s = \begin{pmatrix} 0 & \Id_n \\ \Id_n & 0 \end{pmatrix}
         \]
-        Considering its dimension, use the similar strategy as above. Write $g \in \liealg{gl}_{2n}(V)$ in block form:
+        Considering its dimension, use the similar strategy as above. Write $g \in \gl_{2n}(V)$ in block form:
         \[
             g = 
             \begin{pmatrix}
@@ -187,11 +188,11 @@ Now we turn to discuss the algebraic structures of Lie algebra. Being an algebra
 \end{remark}
 
 \begin{definition}[Derivation]
-    Let $U$ be a vector space over field $\F$. A \textbf{derivation} of $U$ is $S \in \liealg{gl}(U)$ s.t. for all $a, b \in U$, $S(ab) = a S(b) + S(a) b$ (i.e. satisfies the \underline{Leibniz Rule}). The set of derivations on $U$ is denoted by $\Der(U)$.
+    Let $U$ be a vector space over field $\F$. A \textbf{derivation} of $U$ is $S \in \gl(U)$ s.t. for all $a, b \in U$, $S(ab) = a S(b) + S(a) b$ (i.e. satisfies the \underline{Leibniz Rule}). The set of derivations on $U$ is denoted by $\Der(U)$.
 \end{definition}
 
 \begin{remark}
-    $\Der(U)$ is a subalgebra of $\liealg{gl}(U)$. By definition, it suffices to verify that for all $S, T \in \Der(U)$, $[S, T] \in \Der(U)$. Check that the Leibniz rule is satisfied:
+    $\Der(U)$ is a subalgebra of $\gl(U)$. By definition, it suffices to verify that for all $S, T \in \Der(U)$, $[S, T] \in \Der(U)$. Check that the Leibniz rule is satisfied:
     \begin{align*}
         [S, T](ab) &= S(T(ab)) - T(S(ab)) \\
         & = S(aT(b) + T(a)b) - T(aS(b) + S(a)b) \\
@@ -242,7 +243,7 @@ It is clear that the structure constants are specified solely by the definition 
     This kind of ``absorbing'' property is analogous to the normal subgroup in group theory. Considering the Lie bracket as a multiplication on a ring, this is compatible with the definition of an ideal in a ring.
 \end{remark}
 \nogap
-\begin{remark}
+\begin{remark}\label{rmk: extending ideals}
     Given a Lie algebra $L$, if both $I$ and $J$ are ideals in $L$, then $I + J$, $I \cap J$ and $[I, J]$ are also ideals.
 \end{remark}
 
@@ -266,8 +267,8 @@ With the similar formulation of structure preserving sub-objects, we have simila
     A Lie algebra $L$ is \textbf{simple} if $[L, L] \neq 0$ (i.e. it is non-trivial), and the only ideals of $L$ are trivial ($0$ and $L$).
 \end{definition}
 
-\begin{example}
-    Let $L = \liealg{gl}_n(\F)$. Then $[e_{ij}, e_{k\ell}] = \delta_{jk} e_{i \ell} - \delta_{\ell i} e_{kj}$. Setting $k = j$ and $i = \ell$ gives $\Tr([e_{ij}, e_{k\ell}]) = 0$. By definitions in Example \ref{ex: classical Lie algebra}, $L' = [L, L] \simeq \liealg{sl}_n(F)$. Since specifically $\liealg{sl}_n(\F) \subseteq \liealg{gl}_n(\F)$ which gives an ideal, $\liealg{gl}_n(\F)$ is not simple. In fact $\liealg{sl}_n(\F)$ is simple, but proving this result requires more constructions.
+\begin{example}\label{ex: simple lie algebra}
+    Let $L = \gl_n(\F)$. Then $[e_{ij}, e_{k\ell}] = \delta_{jk} e_{i \ell} - \delta_{\ell i} e_{kj}$. Setting $k = j$ and $i = \ell$ gives $\Tr([e_{ij}, e_{k\ell}]) = 0$. By definitions in Example \ref{ex: classical Lie algebra}, $L^{(1)} = [L, L] \simeq \liealg{sl}_n(F)$. Since specifically $\liealg{sl}_n(\F) \subseteq \gl_n(\F)$ which gives an ideal, $\gl_n(\F)$ is not simple. In fact $\liealg{sl}_n(\F)$ is simple, but proving this result requires more constructions.
 \end{example}
 
 \begin{definition}[Normalizer]
@@ -277,5 +278,243 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \begin{definition}[Centralizer]
     Let $L$ be a Lie algebra and $X$ an arbitrary set. The \textbf{centralizer} of $X$ is defined by $C_L(X) := \{ x \in L \mid [x, X] = 0 \}$.
 \end{definition}
+
+\begin{definition}[Morphism]
+    Let $L$ and $L'$ be two Lie algebras over $\F$. A \textbf{homomorphism} is an $\F$-linear transformation $\phi: L \to L'$ s.t. $\phi([x, y]) = [\phi(x), \phi(y)]$, i.e. it commutes with the multiplication, which is the Lie bracket here.
+
+    Adopting general categorical nomenclature, a homomorphism is a \textbf{monomorphism} if it is injective, an \textbf{epimorphism} if it is surjective, an \textbf{isomorphism} if it is bijective, and an \textbf{automorphism} if it is an isomorphism from $L$ to itself.
+\end{definition}
+\nogap
+\begin{remark}\label{rmk: extending morphism results}
+    With the definition of morphisms, we can easily translate common results from group or ring theory to Lie algebras. For all homomorphism $\phi: L \to L'$:
+    \begin{enumerate}
+        \item Both $\ker \phi$ and $\im \phi$ are ideals of $L$.
+        \item (First Isomorphism Theorem) $\im \phi \simeq L/\ker \phi$.
+        \item (Second Isomorphism Theorem) Given two ideals $I, J \subseteq L$, by Remark \ref{rmk: extending ideals} $I + J$ is also an ideal of $L$. We have the isomorphism $(I + J)/J \simeq I/I \cap J$.
+        \item (Third Isomorphism Theorem) Let $I \subseteq J \subseteq L$ where both $I$ and $J$ are ideals of $L$. Then $L/J \simeq (L/I)/(J/I)$.
+        \item (Fourth Isomorphism Theorem, Correspondence) Let $I \subseteq \ker \phi$ be an ideal in $\ker \phi$. Then there exists a unique homomorphism $\psi: L/I \to L'$, i.e. making the following diagram commute:
+        
+        \begin{minipage}{\linewidth}
+            \centering
+            \begin{tikzcd}
+                L \arrow[rr, "\phi"] \arrow[rrdd] & & L' \\
+                & & \\
+                & & L/I \arrow[uu, dashed, "\psi"]
+            \end{tikzcd}
+        \end{minipage}
+    \end{enumerate}
+    \ 
+\end{remark}
+
+\begin{definition}[Representation]
+    Let $L$ and $L'$ be Lie algebras over $\F$, and $V$ a vector space over $\F$. A \textbf{representation} of $L$ on $V$ is a homomorphism $\rho: L \to \gl(V)$.
+\end{definition}
+
+\begin{example}[Adjoint Representation]
+    For a Lie algebra $L$, recall that the adjoint map is $\ad: L \to \gl(L)$, $\ad(x)(y) = [x, y]$. Since $L$ is itself a vector space over $\F$, letting $V = L$ we have a representation. This is indeed a homomorphism as
+    \begin{align*}
+        [\ad(x), \ad(y)](z) 
+        & = \ad(x) \ad(y)(z) - \ad(y) \ad(x)(z) = [x, [y, z]] - [y, [x, z]] \\
+        & = [x, [y, z]] + [y, [z, x]] = -[z, [x, y]] = [[x, y], z] \\
+        & = \ad([x, y])(z)
+    \end{align*}
+\end{example}
+
+\begin{proposition}
+    Any simple Lie algebra is isomorphic to a linear Lie algebra.
+\end{proposition}
+
+\begin{proof}
+    Consider using the adjoint representation. The kernel of $\ad$
+    \[
+        \ker(\ad) = \{ x \in L \mid \ad(x) = 0 \} = \{ x \in L \mid [x, z] = 0, \forall z \in L \} = Z(L)
+    \]
+    by Remark \ref{rmk: extending morphism results} is an ideal in $L$. Since $L$ is simple, $\ker(\ad) = 0$. Using \hyperref[rmk: extending morphism results]{First Isomorphism Theorem}, $L/\ker(\ad) \simeq L \simeq \im(\ad)$. Since $\ad: L \to \gl(V)$, $\im(\ad) \subseteq \gl(L)$. By Definition \ref{def: linear lie algebra} $L$ is a linear Lie algebra.
+\end{proof}
+
+\begin{notation}
+    It is often denoted $\GL(V) = \{ g \in \gl(V) \mid g \text{ invertible} \}$. This coincides with the general linear group.
+\end{notation}
+\nogap
+\begin{example}[Adjoint Representation of $\GL(V)$]
+    Let $g \in \GL(V)$. Define $\Ad(g): \gl(V) \to \gl(V)$ by $\Ad(g)(x) = gxg^{-1}$, which is the adjoint representation of $\GL(V)$.
+\end{example}
+
+\begin{definition}[Nilpotent (Element)]
+    Assume that $\fchar{\F} = 0$. Let $L$ be a Lie algebra on $\F$. Then $x \in L$ is \textbf{nilpotent} if $(\ad(x))^k = 0$ for some $k \in \Z_{\geq 0}$.
+\end{definition}
+
+\begin{definition}[Exponential Map]
+    Let $L$ be a Lie algebra, and $x \in L$ nilpotent of order $k$. Then the \textbf{exponential map} is defined by
+    \[
+        \exp(\ad(x)) = \sum_{n = 0}^{k-1} \frac{(\ad(x))^n}{n!}
+    \] 
+    which coincides with the Taylor expansion. ALl terms of order $k$ vanishes due to $x$ being $k$-nilpotent.
+\end{definition}
+
+\begin{lemma}
+    $\exp(\ad(x)) \in \Aut(L)$. More generally, if $\delta \in \Der(L)$ is nilpotent, then $exp(\delta) \in \Aut(L)$.
+\end{lemma}
+
+\begin{proof}
+    We seek to prove only the general version of the statement. First verify that $\ad$ is a derivation, i.e. we have the equality $\ad([x, y])(z) = ([x, \ad(y)] + [\ad(x), y])(z)$ for all $x, y, z \in L$. This is a direct consequence of the Jacobi Identity:
+    \[
+        \ad([x, y])(z) = [[x, y], z] = [x, [y, z]] - [y, [z, x]] = [x, \ad(y)(z)] - [y, \ad(x)(z)] = ([x, \ad(y)] + [\ad(x), y])(z)
+    \]
+    Now for the general statement on derivations, first verify that $\delta$ is a homomorphism. Write out the expressions explicitly:
+    \begin{align*}
+        \exp(\delta(x)) \exp(\delta(y))
+        & = \left( \sum_{n = 0}^{k-1} \frac{\delta^n(x)}{n!} \right) \left( \sum_{m = 0}^{k-1} \frac{\delta^m(y)}{m!} \right) \\
+        & = \sum_{n = 0}^{2k-2} \left( \sum_{i = 0}^n \frac{\delta^i(x)}{i!} \cdot \frac{\delta^{n-i}(y)}{(n-i)!} \right) \\
+        & = \sum_{n = 0}^{2k-2} \frac{\delta^n(xy)}{n!} & \text{(Leibniz Rule)} \\
+        & = \sum_{n = 0}^{k-1} \frac{\delta^n(xy)}{n!} = \exp(\delta(xy)) & \text{($\delta^k = 0$)}
+    \end{align*}
+    The fact that $\exp(\delta)$ is a bijection can be verified via writing out its inverse: let $\exp(\eta) = \Id - \eta$. Then $\exp^{-1} = \sum_{n=0}^{k-1} \eta^n$, where we designate $\eta^0 = \Id$. 
+\end{proof}
+
+\begin{example}
+    Let $\F$ be a field of characteristic $0$, and $L = \F^2$ with basis $\{v_1, v_2\}$. Endow it with a Lie algebra structure by setting $[v_1, v_2] = v_1$. Then $\ad \in \gl_2(L)$, with the matrix representation
+    \[
+        \ad(v_1) = 
+        \left(
+        \begin{array}{c|c}
+            \ad(v_1)(v_1) & \ad(v_1)(v_2) \\
+        \end{array}
+        \right)
+        = 
+        \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}
+        \quad
+        \ad(v_1)^2 = 0
+    \]
+    Since $\ad$ is 2-nilpotent, 
+    \[
+        \exp(\ad(v_1)) = \Id_2 + 
+        \begin{pmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix}
+    \]
+    Using the same notation as in the proof above,
+    \[
+        \eta =
+        \begin{pmatrix}
+            0 & -1 \\
+            0 & 0
+        \end{pmatrix}
+        \quad \implies \quad
+        \exp^{-1}(\ad(v_1)) =
+        \begin{pmatrix}
+            1 & -1 \\
+            0 & 1
+        \end{pmatrix}
+        =
+        \begin{pmatrix}
+            1 & 1 \\
+            0 & 1
+        \end{pmatrix}^{-1}
+    \]
+    \ 
+\end{example}
+
+\begin{definition}[Derived Series]\label{def: derived series}
+    Given a Lie algebra $L$, the \textbf{derived series} of $L$ is the sequence of ideals
+    \[
+        L^{(0)} = L, \quad L^{(1)} = [L, L], \quad \cdots \quad L^{(n)} = [L^{(n-1)}, L^{(n-1)}]
+    \]
+\end{definition}
+\nogap
+\begin{remark}
+    Similar to the cases in group or ring theory, the relation of ideals is in general not transitive. That is, directly from the expression we know that for all $n$, $L^{(i)}$ is an ideal in $L^{(i-1)}$; but in general $L^{(n)}$ is not an ideal in $L$ for $n \in \Z_{\geq 2}$.
+\end{remark}
+\nogap
+\begin{definition}[Solvable]
+    A Lie algebra $L$ is \textbf{sovlable} if $L^{(n)} = 0$ for some $n$.
+\end{definition}
+
+\begin{example}\label{ex: derived series}
+    Fix $\F$ to be a field. Let $\liealg{t}_n(\F)$ be upper triangular $n$-by-$n$ matrices over $\F$, $\liealg{d}_n(\F)$ be diagonal $n$-by-$n$ matrices and $\liealg{n}_n(\F)$ strictly upper triangular $n$-by-$n$ matrices. Then $\liealg{d}_n(\F)$ is solvable since in general diagonal matrices commutes with all matrices in terms of multiplication (i.e. lies in the center of the Lie algebra). $\liealg{n}_n(\F)$ is also solvable since strictly upper triangular matrices are nilpotent. Furthermore, as vector spaces $\liealg{t}_n(\F) = \liealg{d}_n(\F) \oplus \liealg{n}_n(\F)$, giving $\liealg{t}_n(\F)$ solvable.
+
+    In general we can express the $k$-th derived algebra of $\liealg{t}_n(\F)$ as
+    \[
+        \liealg{t}_n(\F)^{(k)} = \{ (g_{ij}) \mid g_{ij} = 0 \forall i + k - 1 \geq j \}
+    \]
+    which is nilpotent of order $n-1$.
+\end{example}
+\nogap
+\begin{example}
+    All simple Lie algebras are non-solvable. By definition $[L, L]$ is an ideal in $L$; and $L$ being simple implies that $[L, L]$ must be either 0 or $L$. However being simple also requires that $L$ is not abelian. Therefore $L^{(1)} = [L, L] = L$, giving $L^{(k)} = L$ for all $k$ and therefore is non-solvable. One of such examples is $\liealg{sl}_n(\F)$ (also mentioned but not proved in \ref{ex: simple lie algebra}).
+\end{example}
+
+\begin{remark}\label{rmk: extending solvability}
+    Similar to solvability in group theory, we have the following results:
+    \begin{enumerate}
+        \item If $L$ is solvable, then so are its subalgebras and $\im \phi$ for all $\phi: L \to L'$ homomorphisms.
+        \item For $I \subseteq L$ an ideal, if both $I$ and $L/I$ are solvable, then $L$ is solvable.
+        \item If $I$ and $J$ are solvable ideals in $L$, then $I + J$ is also solvable.   
+    \end{enumerate}
+\end{remark}
+
+\begin{corollary}
+    If $L$ is solvable, then $L$ has a unique solvable ideal, called the \textbf{radical ideal}, denoted $\Rad L$.
+\end{corollary}
+
+\begin{proof}
+    Let $S$ be a maximal solvable ideal of $L$, and $I$ any solvable ideal of $L$. There fore $S \subseteq I + S$, and by Remark \ref{rmk: extending solvability} $I + S$ is solvable. Maximality of $S$ implies $I + S = S$, and therefore $I \subseteq S$ which verifies the uniqueness. Existence follows from the fact that the zero ideal is solvable.
+\end{proof}
+
+\begin{definition}[Semisimple]
+    A non-zero Lie algebra $L$ is \textbf{solvable} if $\Rad(L) = 0$.
+\end{definition}
+
+\begin{remark}
+    We have the following properties directly resulting from the definition:
+    \begin{enumerate}
+        \item A simple Lie algebra is semisimple (as expected), as the radical ideal is an ideal.
+        \item If a Lie algebra $L$ is not solvable, then $L/\Rad L$ is semisimple, as by Correspondence Theorem a solvable ideal $J \subseteq L/\Rad L$ corresponds to a solvable ideal $I \subseteq L$ containing $\Rad L$. From definition of radical ideals $I = J$, and therefore $L/\Rad L$ is semisimple.
+    \end{enumerate}
+\end{remark}
+
+\begin{definition}[Descending (Lower) Central Series]
+    Given a Lie algebra $L$, its \textbf{descending central series} (or \textbf{lower central series}) is the sequence of ideals
+    \[
+        L^{0} = L, \quad L^{1} = [L, L], \quad \cdots \quad L^{n} = [L, L^{n-1}]
+    \]
+    The notation is consistent with the treatment of Lie brackets in Lie algebras as multiplication.
+\end{definition}
+\nogap
+\begin{remark}
+    Different from the \hyperref{def: derived series}{derived series}, every term in the descending central series is an ideal in $L$.
+\end{remark}
+
+\textstart
+With the notion of ``raising a power'' for Lie algebras, we can extend the definition of nilpotency:
+
+\begin{definition}[Nilpotent (Lie Algebra)]
+    A Lie algebra $L$ is \textbf{nilpotent} if $L^{n} = 0$ for some $n$.
+\end{definition}
+\nogap
+\begin{example}
+    Revisiting the example for derived series (Example \ref{ex: derived series}) with the same notation, although similarly both $\liealg{n}_n(\F)$ and $\liealg{d}_n(\F)$ are nilpotent, $\liealg{t}_n(\F)$ is not nilpotent, as one can always fill in a diagonal matrix for $L$. The explicit expression for $\liealg{n}_n(\F)$ agrees the nilpotency of upper triangular matrices:
+    \[
+        \liealg{n}_n(\F)^k = \{ (g_{ij}) \mid g_{ij} = 0 \forall i + k \geq j \}
+    \]
+\end{example}
+
+\begin{remark}
+    Similarly the properties of nilpotent groups extend to nilpotent Lie algebras:
+    \begin{enumerate}
+        \item If a Lie algebra $L$ is nilpotent, and all its subalgebras and $\im \phi$ for all $\phi: L \to L'$ homomorphism are nilpotent. 
+        \item If $L/Z(L)$ is nilpotent, then $L$ is nilpotent.
+        \item If $L \neq 0$ is nilpotent, then $Z(L) \neq 0$.
+    \end{enumerate}
+\end{remark}
 
 \end{document}
