@@ -8,7 +8,7 @@
 \tableofcontents  
 \clearpage
 
-\section{Lie Algebras}
+\section{Overview of Lie Algebras}
 
 \begin{definition}[Lie Algebra]
     Let $\F$ be a field. A \textbf{Lie Algebra} is a vector space $L$ over $\F$ equipped with a bilinear map $[\cdot, \cdot]: L \times L \to L$ (the \textbf{Lie bracket}) satisfying the following properties:
@@ -174,7 +174,7 @@ The proof of this statement requires more structure and will be deferred.
     \ 
 \end{example}
 
-\section{Structure of Lie Algebras}
+\section{Analogy with other Algebraic Structures}
 
 \textstart
 Now we turn to discuss the algebraic structures of Lie algebra. Being an algebra itself, we are interested in some special properties, analogous to the study of groups or rings. In general, some of the definitions and theorems can be rephrased in a categorical sense, and thereby applies to all such similar structures.
@@ -217,15 +217,15 @@ Applying the definition and manipulating the terms, we get the Jacobi Identity, 
     & = [\ad(x)(y), z] + [y, \ad(x)(z)]
 \end{align*}
 
-\begin{definition}[Structure Constants]
-    Let $\{x_1, \dots, x_n\}$ be a basis of $L$ as an $\F$-vector space. The \textbf{structure constants} of $L$ are the coefficients $c_{ij}^k$ s.t. $[x_i, x_j] = \sum_{k = 1}^n c_{ij}^k x_k$.
+\begin{definition}[Structural Constants]
+    Let $\{x_1, \dots, x_n\}$ be a basis of $L$ as an $\F$-vector space. The \textbf{structural constants} of $L$ are the coefficients $c_{ij}^k$ s.t. $[x_i, x_j] = \sum_{k = 1}^n c_{ij}^k x_k$.
 \end{definition}
 
 \textstart
-It is clear that the structure constants are specified solely by the definition of Lie bracket, which is the sole extra structure given to any Lie algebra apart from the underlying vector space structure.
+It is clear that the structural constants are specified solely by the definition of Lie bracket, which is the sole extra structure given to any Lie algebra apart from the underlying vector space structure.
 
 \begin{remark}
-    Using the structure constants we can rewrite the Jacobi Identity. Given a basis of $L$ over $\F$ and its corresponding structure constants $a_{ij}^k \in \F$, the Jacobi Identity can be written as
+    Using the structural constants we can rewrite the Jacobi Identity. Given a basis of $L$ over $\F$ and its corresponding structural constants $a_{ij}^k \in \F$, the Jacobi Identity can be written as
     \[
         \sum_{k = 1}^n \left( a_{ij}^k a_{k \ell}^m + a_{j\ell}^k a_{ki}^m + a_{\ell i}^k a_{kj}^m \right) = 0, \quad \forall i, j, \ell, m \in \{1, \dots, n\}
     \]
@@ -424,6 +424,8 @@ With the similar formulation of structure preserving sub-objects, we have simila
     \ 
 \end{example}
 
+\section{Solvable and Nilpotent Lie Algebras}
+
 \begin{definition}[Derived Series]\label{def: derived series}
     Given a Lie algebra $L$, the \textbf{derived series} of $L$ is the sequence of ideals
     \[
@@ -436,7 +438,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{remark}
 \nogap
 \begin{definition}[Solvable]
-    A Lie algebra $L$ is \textbf{sovlable} if $L^{(n)} = 0$ for some $n$.
+    A Lie algebra $L$ is \textbf{solvable} if $L^{(n)} = 0$ for some $n$.
 \end{definition}
 
 \begin{example}\label{ex: derived series}
@@ -516,5 +518,133 @@ With the notion of ``raising a power'' for Lie algebras, we can extend the defin
         \item If $L \neq 0$ is nilpotent, then $Z(L) \neq 0$.
     \end{enumerate}
 \end{remark}
+
+\begin{definition}[Ad-nilpotent]
+    Given a Lie algebra $L$, an element $x \in L$ is \textbf{ad-nilpotent} if $\ad(x)$ is nilpotent.
+\end{definition}
+
+\begin{lemma}
+    If $L$ is nilpotent, then for all $x \in L$, $x$ is ad-nilpotent.
+\end{lemma}
+
+\begin{proof}
+    Since $L$ is nilpotent, there exists $n$ s.t. $L^n = 0$. Since $\ad(x)^n (y) \in L^n$, $\ad(x)^n = 0$.
+\end{proof}
+
+\textstart
+We now seek prove the converse. From now on, assume that $\F$ is a field of characteristic and algebraically closed. Our main focus will be Lie algebras over such fields. For simplicity, when referring to the dimension of a Lie algebra, we will simply use $\dim (-)$ instead of $\dim_{\F} (-)$.
+
+\begin{theorem}[Engel]\label{thm: Engel}
+    Let $L$ be a Lie algebra. If for all $x \in L$, $x$ is ad-nilpotent, then $L$ is nilpotent.
+\end{theorem}
+
+\begin{lemma}
+    If $x \in \gl(V)$ is a nilpotent endomorphism, then $\ad(x)$ is nilpotent.
+\end{lemma}
+
+\begin{proof}
+    This can be verified via writing out the expression explicitly. Using induction, we have
+    \[
+        \ad^n(x) (y) = \sum_{i = 0}^n \binom{n}{i} x^i y x^{n-i}
+    \]
+    Suppose that $x$ is $k$-nilpotent. Choosing $n = 2k$ makes $\ad^n(x)$ vanish.
+\end{proof}
+
+To prove Engel's theorem, we first prove the following theorem:
+
+\begin{theorem}\label{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms}
+    Let $L$ be a subalgebra of $\gl(V)$, for any vector space $V$ s.t. $\dim V$ is finite. If $L$ consists of nilpotent endomorphisms and $V \neq 0$, then there exists a nonzero $v \in V$ s.t. $L \cdot v = 0$, i.e. 0 is always an eigenvalue of $L$.
+\end{theorem}
+\nogap
+\begin{remark}
+    This is the analogy of a similar (yet under that context much easier to prove) result in linear algebra: given a homomorphism that is not surjective, the kernel is non-trivial; and therefore the dimension of the image is strictly less than the dimension of the domain.
+\end{remark}
+
+\begin{proof}
+    Apply induction on the dimension of $L$:
+    \begin{itemize}
+        \item $\dim L = 0$. Then any nonzero $v \in V$ works (the result is vacuous).
+        \item $\dim L = 1$. Then $L$ can be written as the linear span of a single element $L = \linspan{\ell}$. $\ell$ being nilpotent implies that its only eigenvalue is 0. Therefore for any $v$ being an eigenvector of $L$, $\ell v = 0 \implies L \cdot v = 0$.
+        \item \emph{Inductive Step.} Let $K \subsetneq L$ be a maximal subalgebra. (This can be 0, which degenerates to the case of $\dim L = 0$) $K \neq L$ implies that $\dim K < \dim L$, giving $\dim (L/K) < \dim L$. Now take $V = L/K$, and apply the inductive hypothesis: there exists a nonzero $v + K \in L/K$ s.t. $(L/K) \cdot (v + K) = 0$, i.e. $L\cdot v \in K$. Recall that the action of Lie algebra on itself is via adjoint representation, i.e. we have $[y, x] \in K$ for all $y \in K$ and $x \in L$. Since $K$ is maximal in $L$, $\dim K = \dim L - 1$. Therefore, we can write $L = \linspan{K, x}$. By the inductive hypothesis, there exists a nonzero $v \in V$ s.t. $K \cdot v = 0$. Denote all such elements by $W := \{ v \in V \mid K\cdot v = 0 \}$. We now seek to prove that this set is also annihilated by $L$. 
+        
+        First observe that for all $k \in K, w \in W$, $kxw = x(kw) - [x, k]w$. Inductive hypothesis on $K$ implies that $kw = 0$ and therefore $x(kw) = 0$; and inductive hypothesis on $L/K$ implies that $[x, k]w = 0$ for all $x \in L$. By definition of $W$, this gives $x \cdot w \in W$, i.e. $\linspan{x}$ is a subalgebra of $\gl(W)$. Since $\linspan{x}$ is 1-dimensional, IH implies that there exists $w_0 \in W$ s.t. $x \cdot w_0 = 0$. Then decomposing application of $L$ on $w_0$ gives $L \cdot w_0 = K \cdot w_0 + \F x \cdot w_0 = 0$.
+    \end{itemize}
+\end{proof}
+
+\textstart
+Using this theorem it is then straightforward to prove Engel's theorem:
+
+\begin{proof}[Proof of Theorem \ref{thm: Engel}]
+    Similarly apply induction on the dimension of $L$:
+    \begin{itemize}
+        \item $\dim L = 1$. In this case, $L$ is abelian, i.e. $L^2 = [L, L] = 0$. By definition $L$ is nilpotent.
+        \item \emph{Inductive step.} Suppose that the result holds for $V$ s.t. $\dim V \leq n$. By hypothesis, for all $x \in L$, $\ad(x)$ is nilpotent. Use the notation of Theorem \ref{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms}, letting $V = L$ gives that $\ad(L)$ is a subalgebra of $\gl(L) = \gl(V)$. The result of Theorem \ref{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms} gives that there exists $x \in L$ s.t. $\ad(L)(x) = [L, x] = 0$. This implies that $Z(L) \ni x$ is nonzero. Since $Z(L)$ is a vector subspace, $\dim (L/Z(L)) < \dim L$. Inductive hypothesis gives that under the hypothesis, $\dim (L/Z(L))$ is nilpotent. Furthermore, $Z(L)$ is nilpotent by definition (as $(Z(L))^2 = 0$). By Remark \ref{rmk: extending solvability}, $L$ is nilpotent.
+    \end{itemize}
+\end{proof}
+
+\begin{definition}[Flag]
+    Assume that $\dim V$ is finite. A \textbf{flag} in $V$ is a sequence of subspaces
+    \[
+        0 = V_0 \subseteq V_1 \subseteq \cdots \subseteq V_n = V \quad \text{s.t.} \quad \dim V_i = i
+    \]
+\end{definition}
+\nogap
+\begin{definition}[Stabilizer on Flags]
+    An element $x \in \End(V)$ \textbf{stabilizes} a flag if $x(V_i) \subseteq V_i$ for all $i$.
+\end{definition}
+
+\textstart
+Using ``flags'' we can describe the theorem above in a language more resembling that in vector spaces:
+
+\begin{corollary}
+    If $L \in \gl(V)$ consists of nilpotent endomorphisms, then there exists a flag $(V_i)$ stable under $L$, i.e. in such basis $L \in \liealg{n}_n(\F)$, which can be expressed by a strictly upper triangular matrix.
+\end{corollary}
+
+\begin{proof}
+    It suffices to give a construction of such flag. Theorem \ref{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms} implies that there exists nonzero $v \in V$ s.t. $L\cdot v = 0$. Set $V_1 = \F v$ and $W = V / V_1$. Repeat the process until $W = 0$; and ``flatten'' the quotient spaces by taking the preimage of the quotient map, and consider the elements as vector subspaces of $V$. 
+\end{proof}
+
+\begin{lemma}
+    Let $L \neq 0$ be a nilpotent Lie algebra, and $I \subseteq L$ a nonzero ideal. Then $I \cap Z(L) \neq 0$.
+\end{lemma}
+
+\begin{proof}
+    $L$ being nilpotent implies that the derived algebra $L' = [L, L] \subsetneq L$, i.e. $Z(L) \neq 0$. Consider again the action of $L$ on itself via adjoint. Apply again Theorem \ref{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms} with $V = I$, there exists $x \in I$ s.t. $\ad(L)(x) = 0$, i.e. $x \in Z(L)$. This gives a nonzero element in $I \cap Z(L)$.
+\end{proof}
+
+\begin{theorem}\label{thm: solvable implies common eigenvector}
+    Let $L$ be a solvable Lie subalgebra of $\gl(V)$, and assume that $\dim V$ is finite. If $V \neq 0$, then $V$ contains a common eigenvector (but the eigenvalue may change), i.e. there exists $v \in V$ s.t. for all $\ell \in L$, $\ell v = \lambda(\ell) v$ where $v$ is an eigenvector of $\ell$.
+\end{theorem}
+
+\begin{proof}
+    Similar to the proof of the previous result, proceed via applying induction on $\dim L$. The case of $\dim L = 1$ is given by any scalar. 
+    
+    First sketch the framework of the proof:
+    \begin{itemize}
+        \item First define an ideal of codimension 1 in $L$. Using the inductive hypothesis to get a common eigenvector.
+        \item Verify that $L$ stabilizes a certain space containing that eigenvector. 
+        \item Find an eigenvector $z$ in that space s.t. $L + I + \F z$.
+    \end{itemize}
+    Now proceed the proof:
+    \begin{itemize}
+        \item \bu{Step 1}. Since $\dim L > 0$ and $L$ is solvable, $[L, L] \subsetneq L$ (otherwise the derived series will have identical terms and thus do not terminate). By definition $L/[L, L]$ is abelian.\footnote{This quotient is to ensure that there exists such a codimension-1 subspace.} Then any subspace $I \subseteq L/[L, L]$ will be an ideal. Take $I' \subseteq L/[L, L]$ be an ideal of codimension 1. Take its preimage $I \subseteq L$ of the quotient map, which is an ideal of codimension 1 in $L$. Inductive hypothesis implies that there exists nonzero $v \in V$ s.t. for all $x \in I$, $x \cdot v = \lambda(x)v$. Fix $\lambda$ and define $W := \{ w \in V \mid x \cdot w = \lambda w, \forall x \in I \}$. Then $v \in V$ implies that $W \neq 0$, which is a nontrivial space fixed by $I$.
+        \item \bu{Step 2}. We now want to show that the space is actually fixed by $L \supset I$. Use the same trick as the one in the previous proof: Let $w \in W, x \in L$; by definition, for all $y \in I$ we have the equality
+        \begin{equation}\tag{$\ast$}\label{eq: transforming L, I application}
+            (yx) w = xyw - [x, y]w = \lambda(y) xw - \lambda([x, y]) w
+        \end{equation}
+        To show that $xw \in W$, it suffices to show that $y xw = \lambda(y) xw$, i.e. $\lambda([x, y]) = 0$. Let $n > 0$ be the smallest integer s.t. $\{ w, xw, \cdots, x^{n-1}w \}$ are linearly independent. Define $W_i = \linspan{w, xw, \cdots, x^{i-1}w}$. It is clear that there are finitely many distinct $W_i$s, as $W_{n+j} = W_n$ for all $j \in \Z_{\geq 0}$; and $x W_n \subseteq W_n$. Eq. \eqref{eq: transforming L, I application} implies that $y x^i w = \lambda(y) x^i w$ for all $i$, i.e. $I W_n \subseteq W_n$. That is, $y$ is an upper triangular matrix w.r.t. the basis $\{ w, xw \cdots, x^{n-1}w \}$; and diagonal entries are all $\lambda(y)$, i.e. for all $y \in I, \Tr_{W_n}(y) = n \lambda(y)$. Since $I$ is an ideal, $y \in I \implies [x, y] \in I$, i.e. $\Tr_{W_n}([x, y]) = \lambda([x, y])$. However, $\Tr_{W_n}([x, y]) = 0$ as $\Tr_{W_n}(xy) = \Tr_{W_n}(yx)$ for al $x, y \in L$. This thus gives the desired result $\lambda([x, y]) = 0$.
+        \item \bu{Step 3}. Since $I$ is codimension-1, we can write $L = I + \F z$ for some $z \in L$. Since $\F$ is assumed to be algebraically closed, there exists eigenvector $v_0 \in W$ s.t. $z v_0 = c v_0$ for all $z \in L$ with the corresponding $c \in \F$. Furthermore by definition of $W$, for all $y \in I$, $y \cdot v_0 = \lambda(y) v_0$, i.e. $v_0$ is a common eigenvector of $L$. 
+    \end{itemize}
+\end{proof}
+
+\textstart
+With the above result, we can state the following theorem (as a corollary):
+
+\begin{theorem}[Lie]
+    Let $L$ be a solvable Lie subalgebra of $\gl(V)$ with $\dim V$ finite. Then $L$ stabilizes a flag of $V$, i.e. there exists a basis of $V$ for which $L$ can be represented as an upper triangular matrix.
+\end{theorem}
+
+\textstart
+The proof can be done by reiterating the \bu{Step 2} in the proof of Theorem \ref{thm: solvable implies common eigenvector} above.
 
 \end{document}
