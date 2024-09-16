@@ -424,7 +424,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
     \ 
 \end{example}
 
-\section{Solvable and Nilpotent Lie Algebras}
+\section{Criterion for Nilpotent Lie Algebra}
 
 \begin{definition}[Derived Series]\label{def: derived series}
     Given a Lie algebra $L$, the \textbf{derived series} of $L$ is the sequence of ideals
@@ -465,7 +465,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{remark}
 
 \begin{corollary}
-    If $L$ is solvable, then $L$ has a unique solvable ideal, called the \textbf{radical ideal}, denoted $\Rad L$.
+    If $L$ is solvable, then $L$ has a unique maximal solvable ideal, called the \textbf{radical ideal}, denoted $\Rad L$.
 \end{corollary}
 
 \begin{proof}
@@ -656,7 +656,7 @@ With the above result, we can state the following theorem (as a corollary):
     Consider $\ad: L \to \gl(L)$. By Theorem \ref{thm: Lie}, $\ad(L)$ stabilizes a flag of $L$. Definition of $\ad$ ensures that they are ideals.
 \end{proof}
 
-\section{Semisimple Lie Algebras}
+\section{Criterion for Solvable Lie Algebra}
 
 \begin{definition}[Semisimple (Endomorphism)]
     Let $V$ be a finite dimensional vector space over $\F$. $x \in \End(V)$ is \textbf{semisimple} if the roots of its minimal polynomial over $\F$ are distinct. Assuming $\F$ is algebraically closed, this is equivalent to $x$ being diagonalizable.
@@ -671,7 +671,7 @@ With the above result, we can state the following theorem (as a corollary):
 \end{proposition}
 
 \begin{proof}
-    Let $a_1, \dots, a_k$ be distinct eigenvalues of $x$, with multiplicities $m_1, \dots, m_k$. By definition the characteristic polynomial is given by $\operatorname{char}(x) = \prod_{i = 1}^k (T - a_i)^{m_i}$. This allows decomposing $V$ into eigenspaces: denoting $V_i = \ker (T - a_i)^{m_i}$, we have $V = \oplus_{i = 1}^k V_i$; and $x$ preserves $V_i$. Furthermore, the characteristic polynomial of the endomorphism of $x$ on $V_i$ is given by the corresponding part of the characteristic polynomial $\fchar_{V_i}(x) = (T - a_i)^{m_i}$.
+    Let $a_1, \dots, a_k$ be distinct eigenvalues of $x$, with multiplicities $m_1, \dots, m_k$. By definition the characteristic polynomial is given by $\operatorname{char}(x) = \prod_{i = 1}^k (T - a_i)^{m_i}$. This allows decomposing $V$ into eigenspaces: denoting $V_i = \ker (T - a_i)^{m_i}$, we have $V = \bigoplus_{i = 1}^k V_i$; and $x$ preserves $V_i$. Furthermore, the characteristic polynomial of the endomorphism of $x$ on $V_i$ is given by the corresponding part of the characteristic polynomial $\fchar_{V_i}(x) = (T - a_i)^{m_i}$.
 
     By Chinese Remainder Theorem gives the isomorphism
     \[
@@ -740,12 +740,114 @@ With the above result, we can state the following theorem (as a corollary):
     by using the property that for all $A, B$, $\Tr(AB) = \Tr(BA)$. Hypothesis gives $\Tr([z, b]a) = 0$ by definition of $W$. Since $[z, b] = -[b, z]$, from Eq. \eqref{eq: transform Lie bracket for trace} we have $\Tr([a, b]z) = 0$. Lemma \ref{lem: prep for Cartan's 1st Criterion} gives the desired result.
 \end{proof}
 
-\begin{corollary}
-    Let $L$ be a Lie algebra s.t. $Tr(\ad(x) \ad(y)) = 0$ for all $x \in [L, L]$ and $y \in L$. Then $L$ is solvable.
+\begin{corollary}\label{cor: corollary of Cartan's First Criterion to ad}
+    Let $L$ be a Lie algebra s.t. $\Tr(\ad(x) \ad(y)) = 0$ for all $x \in [L, L]$ and $y \in L$. Then $L$ is solvable.
 \end{corollary}
 
 \begin{proof}
-    Let $L' = \ad(L)$. This is solvable by applying \hyperref[thm: Cartan's First Criterion]{Cartan's First Criterion}. Further $\ker \ad(L) = Z(L)$ which is also solvable as $[Z(L), Z(L)] = 0$. Remark \ref{rmk: extending solvability} implies that $L$ is solvable.
+    Let $L' = \ad(L)$. This is solvable by applying \hyperref[thm: Cartan's First Criterion]{Cartan's First Criterion}. Further $\ker (\ad(L)) = Z(L)$ which is also solvable as $[Z(L), Z(L)] = 0$. Remark \ref{rmk: extending solvability} implies that $L$ is solvable.
 \end{proof}
+
+\section{Criterion for Semisimple Lie Algebra}
+
+\begin{definition}[Killing Form]
+    The \textbf{Killing form} is a symmetric bilinear form on $L$, defined by
+    \[
+        \kappa: L \times L \to \F, \quad \kappa(x, y) = \Tr(\ad(x) \ad(y))
+    \]
+\end{definition}
+
+\begin{lemma}\label{lem: transition of bracket in Killing form}
+    $\kappa([x, y], z) = \kappa(x, [y, z])$.
+\end{lemma}
+
+\begin{proof}
+    Transition by definition to the equality on trace, using Eq. \eqref{eq: transform Lie bracket for trace} and the fact that $\ad$ gives a Lie algebra representation:
+    \[
+        \kappa([x, y], z)
+        = \Tr(\ad([x, y])\ad(z)) = \Tr([\ad(x), \ad(y)]\ad(z)) \overset{\eqref{eq: transform Lie bracket for trace}}{=} \Tr(\ad(x), [\ad(y), \ad(z)]) = \kappa(x, [y, z])
+    \]
+\end{proof}
+
+\begin{lemma}\label{lem: restricting Killing form on ideal}
+    Let $I \subseteq L$ be an ideal, with $K$ being the Killing form of $L$ and $K_I$ being the Killing form of $I$. Then $K_I = \restr{K}{I \times I}$.
+\end{lemma}
+
+\begin{proof}
+    First notice a general result: let $V$ be a finite dimensional vector space, with $W \subseteq V$ a subspace. If $\phi \in \End(V)$ satisfies $\phi(V) \subseteq W$, then $\Tr(\phi) = \Tr(\restr{\phi}{W})$. This is straightforward via taking a view from the matrix representation, as the diagonal entries corresponding to basis elements in $V \smallsetminus W$ are all zero.
+
+    Since $I$ is an ideal, for all $x \in I$, $\ad(x)(L) \subseteq I$. This gives
+    \[
+        \kappa_I(x, y) = \Tr(\ad(x) \ad(y)) = \Tr( \restr{(\ad(x) \ad(y))}{I} ) = \Tr(\restr{\ad(x)}{I} \restr{\ad(y)}{I}) = \restr{\kappa(x, y)}{I \times I}
+    \]
+\end{proof}
+
+\begin{definition}[Radical, Non-Degeneracy]
+    Let $\beta$ be a symmetric bilinear form on $L$. The \textbf{radical} of $\beta$ is defined as
+    \[
+        \Rad(\beta) = \{ x \in L \mid \beta(x, y) = 0, \forall y \in L \}
+    \]
+    $\beta$ is \textbf{non-degenerate} if $\Rad(\beta) = 0$.
+\end{definition}
+
+\begin{lemma}\label{lem: semisimple implies no nontrivial abelian ideals}
+    A Lie algebra $L$ is semisimple if and only if $L$ has no nontrivial abelian ideals.
+\end{lemma}
+
+\begin{proof}
+    Recall that by definition, a Lie algebra $L$ is semisimple if and only if $L$ is nonzero, and the radical of $L$, being the maximal solvable ideal, is 0.
+    \begin{itemize}
+        \item[$\Rightarrow$] Prove the contrapositive. Suppose that $I \subseteq L$ is a nontrivial abelian ideal. Since all abelian ideals are solvable $([I, I] = I^{(1)} = 0)$, $I \subseteq \Rad(L) \implies \Rad(L) \neq 0$. Then $L$ is not semisimple.
+        \item[$\Leftarrow$] Prove also the contrapositive. Suppose that $L$ is not semisimple, then it has a nontrivial radical $\Rad(L)$. By definition there exists $n$ s.t. $\Rad(L)^n = 0$, with $\Rad(L)^{n-1} \neq 0$. $\Rad(L)^{n-1}$ is then a nontrivial abelian ideal.
+    \end{itemize} 
+\end{proof}
+
+\begin{theorem}\label{thm: semisimple implies non-degenerate Killing form}
+    A Lie algebra $L$ is semisimple if and only if the Killing form $\kappa$ of it is non-degenerate.
+\end{theorem}
+
+\begin{proof}
+    Proceed via showing implication in both directions:
+    \begin{itemize}
+        \item[$\Rightarrow$] Assume that $L$ is semisimple, i.e. $\Rad(L) = 0$. To show that $\kappa$ is non-degenerate, we need to show that $\Rad(\kappa) = 0$. For all $x \in \Rad(\kappa)$ and $y \in L$, by definition we have $\kappa(x, y) = \Tr(\ad(x) \ad(y)) = 0$. Applying \hyperref[thm: Cartan's First Criterion]{Cartan's First Criterion} with $L = \Rad(\kappa)$ gives $\ad(\Rad(\kappa))$ is solvable. The homomorphism $\ad(\cdot)$ has kernel the center, which is solvable. By Remark \ref{rmk: extending solvability}, $\Rad(\kappa)$ is also solvable. By maximality of $\Rad(L)$, $\Rad(\kappa) \subseteq \Rad(L)$. Therefore, $L$ being semisimple implies that $\Rad(L) = 0$, i.e. $\Rad(\kappa) = 0$.
+        \item[$\Leftarrow$] Suppose that $\kappa$ is non-degenerate, i.e. $\Rad(\kappa) = 0$. Let $I \subseteq L$ be an abelian ideal. It suffices to prove tha $I = 0$ from Lemma \ref{lem: semisimple implies no nontrivial abelian ideals}. For all $x \in I$, $y \in L$, we have
+        \[
+            \ad(x) \ad(y): L \tooh{\ad(y)} L \tooh{\ad(x)} I 
+            \quad \implies \quad
+            (\ad(x) \ad(y))^2: L \too [I, I] = 0
+        \]
+        giving $(\ad(x) \ad(y))$ is nilpotent. Then $0 = \Tr(\ad(x) \ad(y)) = \kappa(x, y)$. This implies that $I \subseteq \Rad(\kappa) = 0$.
+    \end{itemize}
+\end{proof} 
+
+\begin{remark}
+    For $\{ x_1, \dots, x_n \}$ any basis of $L$, $\kappa_L$ is non-degenerate if and only if the matrix given by $(\kappa(x_i, x_j))$ is invertible. This can be interpreted as for any basis there will not exists a row/column of zeros in $(\kappa(x_i, x_j))$, matching the definition of non-degeneracy.
+\end{remark}
+
+\begin{definition}[Direct Sum]
+    A Lie algebra $L$ is a \textbf{direct sum} of ideals, denoted $L = \bigoplus_{i = 1}^n I_i$, if $L$ is the direct sum of $(I_i)$ as vector spaces.
+\end{definition}
+\nogap
+\begin{remark}
+    By the definition of direct sum on vector spaces, if we have the direct sum decomposition of $L$ as $(I_i)$, for all $i \neq j$, $I_i \cap I_j = 0$, giving $[I_i, I_j] \subseteq I_i \cap I_j = 0$. Therefore, the Lie bracket on $L$ can be fixed via fixing the Lie bracket on all $I_i$s.
+\end{remark}
+
+\begin{theorem}\label{thm: uniqueness of simple ideal decomposition on semisimple lie algebra}
+    Let $L$ be a semisimple Lie algebra. Then there exists simple ideals $I_1, \dots, I_n$ s.t. $L = \bigoplus_{i = 1}^n I_i$ which are unique up to isomorphism. Furthermore, $\kappa_{I_i} = \restr{\kappa}{I_i \times I_i}$ for all $i$.
+\end{theorem}
+
+\begin{proof}
+    Let $I \subseteq L$ be an arbitrary ideal. Define $I^{\perp} := \{ x \in L \mid \kappa(x, y) = 0, \forall y \in I \}$, This is also an ideal, as for all $x \in I^{\perp}$, $y \in L$, $\kappa([x, y], z) = \kappa(x, [y, z]) = 0$ for all $z \in L$ by Lemma \ref{lem: transition of bracket in Killing form}; and the second equality is from the definition of $I^{\perp}$. Applying \hyperref[thm: Cartan's First Criterion]{Cartan's First Criterion} with $L$ being $I$ and $I^{\perp}$ separately gives that both $I$ and $I^{\perp}$ are solvable, hence $I \cap I^{\perp}$ is solvable. $L$ being semisimple implies that $I \cap I^{\perp} \subseteq \Rad(L) = 0$, i.e. $L$ can be decomposed into the direct sum as $L = I \oplus I^{\perp}$. Conduct this process iteratively gives the decomposition of $L$ into simple ideals.
+
+    Now we verify the other desired properties. The decomposition is unique up to isomorphism, as for any $I \subseteq L$ ideal, $[I, L]$ is an ideal of $I$. $L$ being semisimple implies that $I$ is not abelian, hence $[I, L] \neq 0$. $I$ being simple implies $I = [I, L] = \bigoplus_{i = 1}^n [I, I_i]$; but since $[I, I_i]$ is both a sub-ideal in $I$ and $I_i$, with both of them being simple, either $[I, I_i] = 0$ or $[I, I_i] = I_i = I$, where the former implies direct sum decomposition, and the latter implies that $I$ is isomorphic to $I_i$.
+
+    The final claim is proven in Lemma \ref{lem: restricting Killing form on ideal}.
+\end{proof}
+
+\begin{corollary}
+    The converse of the above theorem is also true, i.e. for $L$ Lie algebra with simple ideals $I_1, \dots, I_n$ s.t. $L = \bigoplus_{i = 1}^n I_i$, $L$ is semisimple. The proof is done by reversing the claims in the proof of the theorem.
+\end{corollary}
+
+\section{Lie Algebra Representations}
 
 \end{document}
