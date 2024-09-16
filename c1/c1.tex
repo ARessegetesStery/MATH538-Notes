@@ -850,4 +850,55 @@ With the above result, we can state the following theorem (as a corollary):
 
 \section{Lie Algebra Representations}
 
+\textstart
+We have seen previously how Lie algebras act on other structures, of which the most frequently used one is the adjoint representation. In this section we formalize the notion. In this section we will assume that the underlying field of the Lie algebra $\F$ is characteristic-0 and algebraically closed. First we review the basics of representation theory:
+
+\begin{definition}[Modules on Lie Algebra]
+    Given a Lie algebra $L$, an \textbf{$L$-module} is a vector space $V$ over $\F$ equipped with a map $L \times V \to V, (x, v) \mapsto xv$ s.t. it is distributive in $L$ and $V$, with the scalar multiplication compatible with Lie bracket, i.e.
+    \[
+        [x, y](v) = x(y(v)) - y(x(v)), \forall x, y \in L, v \in V
+    \]
+    This is simply the extension of modules where the multiplication on the ring is replaced by the Lie bracket. The morphism between $V, W$ as $L$-modules is a linear map $f: V \to W$ s.t. $f(xv) = xf(v)$ for all $x \in L, v \in V$.
+\end{definition}
+\nogap
+\begin{remark}
+    $L$-modules are equivalent to $L$-representations (as is in the generalized result from group theory), where $\phi: L \to \gl(V)$ with $xv = \phi(x) \cdot v$ specifies how the Lie algebra acts on the vector space.
+\end{remark}
+
+\begin{definition}[Irreducible]
+    An $L$-representation $V$ is \textbf{irreducible} if $V \neq 0$, and the only $L$-submodules of $V$ are 0 and $V$.
+\end{definition}
+\nogap
+\begin{definition}[Completely Reducible]
+    An $L$-representation $V$ is \textbf{completely reducible} if $V$ is a direct sum of irreducible $L$-submodules.
+\end{definition}
+\nogap
+\begin{remark}
+    An $L$-representation $V$ is completely reducible if and only if for all $W \subseteq V$ $L$-submodule, there exists another $L$-submodule $W' \subseteq V$ s.t. $V = W \oplus W'$. This can be verified via choosing a basis of $W$ as a vector space, extending that to a basis of $V$, and construct $W'$ accordingly. 
+\end{remark}
+
+\begin{example}
+    Let $L = \gl_n(\F)$ with $V = \F^n$. The standard representation is given by $\phi(x) = x$ (as endomorphisms), with multiplication given by matrix multiplication. This is an irreducible representation, as for all nonzero $W \subseteq V$, fixing a basis of it $\{w_1, \dots, w_m\}$ and completing it to be a basis of $V$ $\{ w_1, \dots, w_m, v_{m+1}, \dots, v_n \}$, there exists $x \in \gl_n(\F)$ s.t. $x(w_1) = v_n$ which does not fix $W$.
+\end{example}
+
+\begin{definition}[Dual Representation]
+    Let $V$ be an $L$-module, The \textbf{dual representation} of $V$, denoted $V^*$, is given by $V^* = \Hom(V, \F)$ with the action of $L$ defined as $(x \cdot f)(v) = -f(xv)$ for all $x \in L, v \in V, f \in V^*$.
+\end{definition}
+
+\begin{lemma}
+    $V^*$ is an $L$-module.
+\end{lemma}
+
+\begin{proof}
+    Distributivity is clear. It suffices to check the compatibility with Lie bracket, i.e. we want to show that $(([x, y])(f))(v) = ((xy - yx)(f))(v)$. By definition this is given by
+    \begin{align*}
+        (([x, y])(f))(v) &= -f([x, y]v) = -f(x(y(v))) + f(y(x(v))) \\
+        & = -(yx)(f)(v) + (xy)(f)(v) = ((xy - yx)(f))(v)
+    \end{align*}
+\end{proof}
+
+\begin{definition}[Faithful Representation]
+    An $L$-representation $V$ is \textbf{faithful} if the kernel of the representation $\phi: L \to \gl(V)$ is 0.
+\end{definition}
+
 \end{document}
