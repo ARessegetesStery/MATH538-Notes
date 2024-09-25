@@ -750,7 +750,7 @@ With the above result, we can state the following theorem (as a corollary):
 
 \section{Criterion for Semisimple Lie Algebra}
 
-\begin{definition}[Killing Form]
+\begin{definition}[Killing Form]\label{def: Killing Form}
     The \textbf{Killing form} is a symmetric bilinear form on $L$, defined by
     \[
         \kappa: L \times L \to \F, \quad \kappa(x, y) = \Tr(\ad(x) \ad(y))
@@ -869,7 +869,7 @@ We have seen previously how Lie algebras act on other structures, of which the m
     An $L$-representation $V$ is \textbf{irreducible} if $V \neq 0$, and the only $L$-submodules of $V$ are 0 and $V$.
 \end{definition}
 \nogap
-\begin{definition}[Completely Reducible]
+\begin{definition}[Completely Reducible]\label{def: completely reducible}
     An $L$-representation $V$ is \textbf{completely reducible} if $V$ is a direct sum of irreducible $L$-submodules.
 \end{definition}
 \nogap
@@ -900,5 +900,140 @@ We have seen previously how Lie algebras act on other structures, of which the m
 \begin{definition}[Faithful Representation]
     An $L$-representation $V$ is \textbf{faithful} if the kernel of the representation $\phi: L \to \gl(V)$ is 0.
 \end{definition}
+
+\begin{proposition}
+    If $L$ is a semisimple Lie algebra, and $\phi: L \to \gl(V)$ is a faithful representation, then the bilinear map 
+    \[
+        \beta: L \times L \to \F, \quad \beta(x, y) = \Tr(\phi(x) \phi(y))
+    \]
+    is non-degenerate.
+\end{proposition}
+
+\begin{proof}
+    Recall that the radical of a bilinear map $\beta$ is defined as
+    \[
+        \Rad(\beta) = \{ x \in L \mid \beta(x, y) = 0, \forall y \in L \}
+    \]
+    Apply \hyperref[thm: Cartan's First Criterion]{Cartan's First Criterion} with $L = \phi(\Rad(\beta))$. $x \in \phi(\Rad(\beta))$ in particular implies that $x \in [\phi(\Rad(\beta)), \phi(\Rad(\beta))]$, with which we hav e$\phi(\Rad(\beta))$ is solvable. Since $\phi$ is faithful, $\Rad(\beta) \simeq \phi(\Rad(\beta))$, i.e. $\Rad(\beta)$ is solvable. Since $L$ is semisimple, $\Rad(\beta) \subseteq \Rad(L) = 0$, giving $\Rad(\beta) = 0$, which is equivalent to saying that $\beta$ is non-degenerate.
+\end{proof}
+
+\begin{definition}[Dual Basis]
+    Let $V$ be a vector space over $\F$, with $\{ v_1, \dots, v_n \}$ a basis of $V$. Let $\beta: V \times V \to \F$ be a bilinear map. Then the \textbf{dual basis} of $\{ v_1, \dots, v_n \}$ with respect to $\beta$ is given by $\{ v_1^*, \dots, v_n^* \}$ s.t. $\beta(v_i, v_j^*) = \delta_{ij}$.
+\end{definition}
+\nogap
+\begin{remark}
+    In $\R^n$ with the canonical basis $\{e_1, \dots, e_n\}$, its dual consists of the covectors, with the bilinear map being tensor contraction.
+\end{remark}
+
+\begin{definition}[Casimir Element]
+    Let $L$ be a Lie algebra, with $\{x_i\}_{i = 1}^n$ a basis of $L$. Let $\beta$ be an arbitrary bilinear map on $L$, and $\{y_i\}_{i = 1}^n$ the dual of $\{x_i\}_{i = 1}^n$ w.r.t. $\beta$. Given a represnetation $\phi: L \to \gl(V)$, the \textbf{Casimir element} of $\phi$ w.r.t. $\beta$ is defined as
+    \[
+        C_{\phi}(\beta) = C_{\phi} = \sum_{i = 1}^n \phi(x_i) \phi(y_i) \in \End(V)
+    \]
+\end{definition}
+
+\begin{lemma}
+    $C_{\phi}$ commutes with $\phi(L)$.
+\end{lemma}
+
+\begin{proof}
+    Let $x \in L$ be an arbitrary element. Let $a_{ij}, b_{ij} \in \F$ s.t.
+    \[
+        [x, x_i] = \sum_{j = 1}^n a_{ij} x_j, \quad [x, y_i] = \sum_{j = 1}^n b_{ij} y_j
+    \]
+    By definition of dual basis, 
+    \begin{align*}
+        a_{ik}
+        & = \sum_{j} a_{ij} \delta_{jk} = \sum_{j} a_{ij} \beta(x_j, y_k) \\
+        & = \beta([x, x_i], y_k) = -\beta([x_i, x], y_k) & \text{By \hyperref[eq: transform Lie bracket for trace]{$\Tr([x, y]z) = \Tr(x[y, z])$}} \\
+        & = -\beta(x_i, [x, y_k]) \\
+        & = -\sum_{j} b_{kj} \beta(x_i, y_j) = -b_{ki}
+    \end{align*}
+    Notice that in general we have the equality
+    \begin{equation}\label{eq: [x, yz] = [x, y]z + y[x, z]}
+        [x, yz] = xyz - yzx = xyz - yxz + yxz - yzx = [x, y]z + y[x, z]
+    \end{equation}
+    To prove the lemma, we only need to show that for all $x \in L$, $[\phi(x), C_{\phi}] = 0$. 
+    Compute
+    \begin{align*}
+        [\phi(x), C_{\phi}] = \sum_{i} [\phi(x), \phi(x_i) \phi(y_i)]
+        & = \sum_{i} [\phi(x), \phi(x_i)] \phi(y_i) + \phi(x_i) [\phi(x), \phi(y_i)] & \text{By \eqref{eq: [x, yz] = [x, y]z + y[x, z]}} \\
+        & = \sum_{i} \phi([x, x_i]) \phi(y_i) + \phi(x_i) \phi([x, y_i]) \\
+        & = \sum_{i, j} a_{ij} \phi(x_j) \phi(y_i) + b_{ij} \phi(x_i) \phi(y_j) = 0
+    \end{align*}
+    where the last equality holds since $a_{ik} = -b_{ki}$.
+\end{proof}
+
+\begin{remark}
+    Let $\{y_i\}_{i=1}^n$ be the dual basis of $\{x_i\}_{i=1}^n$ w.r.t. the \hyperref[def: Killing Form]{Killing Form}, then we have
+    \[
+        \Tr(C_{\phi}) = \sum_{i} \Tr(\phi(x_i) \phi(y_i)) = \sum_{i} \kappa(x_i, y_i) = \dim L
+    \]
+    If $\phi$ is an irreducible representation, then $C_{\phi}$ is equivalent to a scalar (can be expressed with a matrix with only identical diagonal elements). Therefore, $C_{\phi} = \frac{\dim L}{\dim V} \Id_V$. In particular $C_{\phi}$ does not depend on the choice of basis. 
+
+    Furthermore, by applying Schur Lemma, if $\phi$ is irreducible, then the only endomorphisms of $V$ commuting with $\phi$ are $\F \Id_V$.
+\end{remark}
+
+\begin{example}
+    Let $L = \liealg{sl}_2(\F)$ with $V = \F^2$. The the representation $\phi: L \to \gl(V)$, $\phi(x) = x$ is irreducible. Write in the standard basis
+    \[
+        \left\{ 
+        x = \begin{pmatrix}
+            & 1 \\ &     
+        \end{pmatrix}, 
+        h = \begin{pmatrix}
+            1 & \\ & -1
+        \end{pmatrix},
+        y = \begin{pmatrix}
+            & \\ 1 &
+        \end{pmatrix}
+        \right\}
+         = \{ x_1, x_2, x_3 \}
+    \]
+    with $\kappa(\ell_1, \ell_2) = \Tr(\phi(\ell_1)\phi(\ell_2)) = \Tr(\ell_1 \ell_2)$. The dual basis is then given by $\{ y, \frac{1}{2}h, x \}$. Verify
+    \[
+        C_{\phi} = \sum_{i=1}^3 \phi(x_i) \phi(y_i) = xy + \frac{1}{2} h^2 + yx = \frac{3}{2} \Id_2
+    \]
+    This is consistent with the remark above as $\dim L = 3$, $\dim V = 2$.
+\end{example}
+
+\begin{lemma}\label{lem: semisimple repr acts trivially on 1-dim repr}
+    Let $\phi: L \to \gl(V)$ be a representation of a semisimple Lie algebra $L$. Then $\phi(L) \subseteq \liealg{sl}(V)$. In particular, $L$ acts trivially on any 1-dimensional $L$-module as $\liealg{sl}(V)$ does.
+\end{lemma}
+
+\begin{proof}
+    Since $L$ is semisimple, there is no nontrivial solvable ideal, giving $[L, L] = L$. Notice that $[\gl(V), \gl(V)] = \liealg{sl}(V)$ (as $\Tr(AB) = \Tr(BA)$, giving the sum of diagonal elements are 0; and writing out the full matrix gives the equality.) Then
+    \[
+        \phi(L) = \phi([L, L]) = [\phi(L), \phi(L)] \subseteq \liealg{sl}(V)
+    \]
+\end{proof}
+
+\begin{theorem}[Weyl]
+    Let $L$ be a nonzero semisimple Lie algebra, and $\phi: L \to \gl(V)$ a finite dimensional representation. Then $\phi$ is \hyperref[def: completely reducible]{completely reducible}.
+\end{theorem}
+
+\begin{proof}
+    It is enough to show that for all $L$-submodule $W \subseteq V$, there exists an $L$-submodule $W' \subseteq V$ s.t. $V = W \oplus W'$. If this holds, then by applying the argument iteratively we can decompose $V$ into a direct sum of irreducible $L$-submodules.
+
+    \bu{Case 1} First assume that $\dim V/W = 1$. 
+    \begin{addmargin}{2em}
+        \bu{1. a)} Suppose that $W$ is irreducible. Without loss of generality, we can assume that $\phi$ is faithful. (Otherwise, we can consider in turn the Lie algebra $L/\ker \phi$, which is also semisimple by correspondence according to the quotient map.) By Lemma \ref{lem: semisimple repr acts trivially on 1-dim repr}, $L$ acts trivially on $V/W$. Since by definition $L \cdot W \subseteq W$, $C_{\phi} = \sum_{i=1}^n \phi(x_i) \phi(y_i)$ also preserves $W$. Since $W$ is irreducible, $C_{\phi}$ acts as a scalar on $W$. Since $\phi$ is faithful, $C_{\phi} \neq 0$. $\ker (C_{\phi})$ gives an $L$-submodule of $V$. As $L$ acts trivially on $V/W$, so does $C_{\phi}$, and therefore $\ker(C_{\phi})$ is 1-dimensional. $C_{\phi}$ acts as a scalar on $W$ implies that $W \cap \ker(C_{\phi}) = 0$, i.e. we have the decomposition $V = W \oplus \ker(C_{\phi})$.
+        
+        \bu{1. b)} Suppose that $W$ is not irreducible. Apply induction on dimension of $W$:
+        \begin{itemize}
+            \item The base case is proven in \bu{1. a)}.
+            \item Suppose that the result holds for all $W$ being codimension 1 and irreducible. Let $0 \neq W'' \subseteq W$ be an $L$-submodule. Since $\dim V/W = 1$, after taking the quotient $\dim (V/W'')/(W/W'') = 1$. Furthermore, we have $\dim V/W'' < \dim V$ and $\dim W/W'' < \dim W$. Applying the inductive hypothesis gives that there exists $W'$ where $V/W'' = W/W'' \oplus W'/W''$ where $\dim W'/W'' = 1$. Applying the inductive hypothesis with the larger submodule being $W'$, there exists $X$ where $W' = W'' \oplus X$, and $\dim X = 1$. This gives the decomposition of $V$: $V = W \oplus X$.
+        \end{itemize}
+    \end{addmargin}
+    \bu{Case 2} Now consider the general case, where $W$ is an arbitrary $L$-module. Seek to construct a complement from the First Isomorphism Theorem. Notice that $\Hom(V, W)$ is also an $L$-module, with the scalar multiplication given by $[x, f]v = xf(v) - f(xv)$ for all $x \in L, v \in V, f \in \Hom(V, W)$. Define
+    \[
+        \mathcal{V} := \{ f \in \Hom(V, W) \mid \restr{f}{W} = a \Id_W, \ a \in \F \}, \quad \mathcal{W} := \{ f \in \Hom(V, W) \mid \restr{f}{W} = 0 \}
+    \]
+    For all $x \in L$, $f \in \mathcal{V}$, $v \in V$, $[x, f](v) = xf(v) - f(xv) = a(xv) - a(xv) = 0$, implying that $L\mathcal{V} \subseteq \mathcal{W}$. It is clear that $\dim \mathcal{V}/\mathcal{W} = 1$ (parameterized by $a$), giving the decomposition $\mathcal{V} = \mathcal{W} \oplus \mathcal{X}$ where $\dim \mathcal{X} = 1$, where $L$ acts trivially on $X$ (since $L$ is semisimple, and by Lemma \ref{lem: semisimple repr acts trivially on 1-dim repr}). Take arbitrary $g \neq 0$ and $g \in \mathcal{X}$, we can write $V = W \oplus \ker g$, which gives a decomposition.
+\end{proof}
+
+\section{Representation of $\liealg{sl}_2(\F)$}
+
+\section{Root System}
 
 \end{document}
