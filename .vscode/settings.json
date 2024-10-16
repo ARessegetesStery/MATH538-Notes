@@ -20,6 +20,7 @@
         "Nilpotent",
         "preimage",
         "Schur",
+        "Schwarz",
         "semisimple",
         "semisimplicity",
         "subalgebra",
@@ -28,6 +29,7 @@
         "summands",
         "surjective",
         "symplectic",
-        "Verma"
+        "Verma",
+        "Weyl"
     ]
 }
