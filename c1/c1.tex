@@ -20,7 +20,7 @@
 \end{definition}
 \nogap
 \begin{remark}
-    Throughout this note, for simplicity we will assume that $\fchar{\F} = 0$. Nevertheless, the limitations on field characteristics will be pointed out when it is clear that the result will fall in certain cases.
+    Throughout this note, for simplicity we will assume that $\fchar{\F} = 0$. Nevertheless, the limitations on field characteristics will be pointed out when it is clear that the result will fall for certain cases.
 \end{remark}
 
 \begin{example}
@@ -206,7 +206,7 @@ Now we turn to discuss the algebraic structures of Lie algebra. Being an algebra
 \end{definition}
 
 \textstart
-An immediate thought is to verify that indeed $\ad(x)$ gives a derivation. Recall that the product defined in Lie algebra is the Lie bracket. Therefore, to verify the derivation property it suffices to check whether we have the equality
+It turns out that $\ad(x)$ gives a derivation. Recall that the product defined in Lie algebra is the Lie bracket. Therefore, to verify the derivation property it suffices to check whether we have the equality
 \[
     \ad(x)([y, z]) = [\ad(x)(y), z] + [y, \ad(x)(z)]
 \]
@@ -240,7 +240,7 @@ It is clear that the structural constants are specified solely by the definition
 \end{definition}
 \nogap
 \begin{remark}
-    This kind of ``absorbing'' property is analogous to the normal subgroup in group theory. Considering the Lie bracket as a multiplication on a ring, this is compatible with the definition of an ideal in a ring.
+    This kind of ``absorbing'' property is analogous to the normal subgroup in group theory. Considering the Lie bracket as a multiplication on a ring, this is also compatible with the definition of an ideal in a ring.
 \end{remark}
 \nogap
 \begin{remark}\label{rmk: extending ideals}
@@ -268,7 +268,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{definition}
 
 \begin{example}\label{ex: simple lie algebra}
-    Let $L = \gl_n(\F)$. Then $[e_{ij}, e_{k\ell}] = \delta_{jk} e_{i \ell} - \delta_{\ell i} e_{kj}$. Setting $k = j$ and $i = \ell$ gives $\Tr([e_{ij}, e_{k\ell}]) = 0$. By definitions in Example \ref{ex: classical Lie algebra}, $L^{(1)} = [L, L] \simeq \liealg{sl}_n(F)$. Since specifically $\liealg{sl}_n(\F) \subseteq \gl_n(\F)$ which gives an ideal, $\gl_n(\F)$ is not simple. In fact $\liealg{sl}_n(\F)$ is simple, but proving this result requires more constructions.
+    Let $L = \gl_n(\F)$. Then $[e_{ij}, e_{k\ell}] = \delta_{jk} e_{i \ell} - \delta_{\ell i} e_{kj}$. Setting $k = j$ and $i = \ell$ gives $\Tr([e_{ij}, e_{k\ell}]) = 0$. By definitions in Example \ref{ex: classical Lie algebra}, $L^{(1)} = [L, L] \simeq \liealg{sl}_n(\F)$. Since specifically $\liealg{sl}_n(\F) \subseteq \gl_n(\F)$ which gives an ideal, $\gl_n(\F)$ is not simple. In fact $\liealg{sl}_n(\F)$ is simple, but proving this result requires more constructions.
 \end{example}
 
 \begin{definition}[Normalizer]
@@ -276,7 +276,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{definition}
 \nogap
 \begin{definition}[Centralizer]
-    Let $L$ be a Lie algebra and $X$ an arbitrary set. The \textbf{centralizer} of $X$ is defined by $C_L(X) := \{ x \in L \mid [x, X] = 0 \}$.
+    Let $L$ be a Lie algebra and $X$ an arbitrary set. The \textbf{centralizer} of $X$ is defined by $C_L(X) := \{ x \in L \mid [x, X] = 0 \}$, the largest subalgebra of $L$ in which $K$ is in the center.
 \end{definition}
 
 \begin{definition}[Morphism]
@@ -289,10 +289,10 @@ With the similar formulation of structure preserving sub-objects, we have simila
     With the definition of morphisms, we can easily translate common results from group or ring theory to Lie algebras. For all homomorphism $\phi: L \to L'$:
     \begin{enumerate}
         \item Both $\ker \phi$ and $\im \phi$ are ideals of $L$.
-        \item (First Isomorphism Theorem) $\im \phi \simeq L/\ker \phi$.
-        \item (Second Isomorphism Theorem) Given two ideals $I, J \subseteq L$, by Remark \ref{rmk: extending ideals} $I + J$ is also an ideal of $L$. We have the isomorphism $(I + J)/J \simeq I/I \cap J$.
-        \item (Third Isomorphism Theorem) Let $I \subseteq J \subseteq L$ where both $I$ and $J$ are ideals of $L$. Then $L/J \simeq (L/I)/(J/I)$.
-        \item (Fourth Isomorphism Theorem, Correspondence) Let $I \subseteq \ker \phi$ be an ideal in $\ker \phi$. Then there exists a unique homomorphism $\psi: L/I \to L'$, i.e. making the following diagram commute:
+        \item \emph{(First Isomorphism Theorem)} $\im \phi \simeq L/\ker \phi$.
+        \item \emph{(Second Isomorphism Theorem)} Given two ideals $I, J \subseteq L$, by Remark \ref{rmk: extending ideals} $I + J$ is also an ideal of $L$. We have the isomorphism $(I + J)/J \simeq I/I \cap J$.
+        \item \emph{(Third Isomorphism Theorem)} Let $I \subseteq J \subseteq L$ where both $I$ and $J$ are ideals of $L$. Then $L/J \simeq (L/I)/(J/I)$.
+        \item \emph{(Fourth Isomorphism Theorem, Correspondence)} Let $I \subseteq \ker \phi$ be an ideal in $\ker \phi$. Then there exists a unique homomorphism $\psi: L/I \to L'$, i.e. making the following diagram commute:
         
         \begin{minipage}{\linewidth}
             \centering
@@ -349,7 +349,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
     \[
         \exp(\ad(x)) = \sum_{n = 0}^{k-1} \frac{(\ad(x))^n}{n!}
     \] 
-    which coincides with the Taylor expansion. ALl terms of order $k$ vanishes due to $x$ being $k$-nilpotent.
+    which coincides with the Taylor expansion. All terms of order $k$ vanishes due to $x$ being $k$-nilpotent.
 \end{definition}
 
 \begin{lemma}
@@ -442,11 +442,11 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{definition}
 
 \begin{example}\label{ex: derived series}
-    Fix $\F$ to be a field. Let $\liealg{t}_n(\F)$ be upper triangular $n$-by-$n$ matrices over $\F$, $\liealg{d}_n(\F)$ be diagonal $n$-by-$n$ matrices and $\liealg{n}_n(\F)$ strictly upper triangular $n$-by-$n$ matrices. Then $\liealg{d}_n(\F)$ is solvable since in general diagonal matrices commutes with all matrices in terms of multiplication (i.e. lies in the center of the Lie algebra). $\liealg{n}_n(\F)$ is also solvable since strictly upper triangular matrices are nilpotent. Furthermore, as vector spaces $\liealg{t}_n(\F) = \liealg{d}_n(\F) \oplus \liealg{n}_n(\F)$, giving $\liealg{t}_n(\F)$ solvable.
+    Fix $\F$ to be a field. Let $\liealg{t}_n(\F)$ be upper triangular $n$-by-$n$ matrices over $\F$, $\liealg{d}_n(\F)$ be diagonal $n$-by-$n$ matrices and $\liealg{n}_n(\F)$ strictly upper triangular $n$-by-$n$ matrices. Then $\liealg{d}_n(\F)$ is solvable since in general diagonal matrices commutes with all matrices in terms of multiplication (i.e. lies in the center of the Lie algebra, giving $\liealg{d}_n(\F)^{(1)} = [\liealg{d}_n(\F), \liealg{d}_n(\F)] = 0$). $\liealg{n}_n(\F)$ is also solvable since strictly upper triangular matrices are nilpotent. Furthermore, as vector spaces $\liealg{t}_n(\F) = \liealg{d}_n(\F) \oplus \liealg{n}_n(\F)$, giving $\liealg{t}_n(\F)$ solvable.
 
     In general we can express the $k$-th derived algebra of $\liealg{t}_n(\F)$ as
     \[
-        \liealg{t}_n(\F)^{(k)} = \{ (g_{ij}) \mid g_{ij} = 0 \forall i + k - 1 \geq j \}
+        \liealg{t}_n(\F)^{(k)} = \{ (g_{ij}) \mid g_{ij} = 0,\ \forall i + k - 1 \geq j \}
     \]
     which is nilpotent of order $n-1$.
 \end{example}
@@ -473,7 +473,7 @@ With the similar formulation of structure preserving sub-objects, we have simila
 \end{proof}
 
 \begin{definition}[Semisimple (Algebra)]
-    A non-zero Lie algebra $L$ is \textbf{solvable} if $\Rad(L) = 0$.
+    A non-zero Lie algebra $L$ is \textbf{semisimple} if $\Rad(L) = 0$, i.e. it does not admit a nontrivial solvable ideal.
 \end{definition}
 
 \begin{remark}
@@ -489,11 +489,11 @@ With the similar formulation of structure preserving sub-objects, we have simila
     \[
         L^{0} = L, \quad L^{1} = [L, L], \quad \cdots \quad L^{n} = [L, L^{n-1}]
     \]
-    The notation is consistent with the treatment of Lie brackets in Lie algebras as multiplication.
+    The notation is consistent if we view Lie brackets in Lie algebras as multiplication.
 \end{definition}
 \nogap
 \begin{remark}
-    Different from the \hyperref{def: derived series}{derived series}, every term in the descending central series is an ideal in $L$.
+    Different from the \hyperref[def: derived series]{derived series}, every term in the descending central series is an ideal in $L$.
 \end{remark}
 
 \textstart
@@ -504,14 +504,14 @@ With the notion of ``raising a power'' for Lie algebras, we can extend the defin
 \end{definition}
 \nogap
 \begin{example}
-    Revisiting the example for derived series (Example \ref{ex: derived series}) with the same notation, although similarly both $\liealg{n}_n(\F)$ and $\liealg{d}_n(\F)$ are nilpotent, $\liealg{t}_n(\F)$ is not nilpotent, as one can always fill in a diagonal matrix for $L$. The explicit expression for $\liealg{n}_n(\F)$ agrees the nilpotency of upper triangular matrices:
+    Revisiting the example for derived series (Example \ref{ex: derived series}) with the same notation, although similarly both $\liealg{n}_n(\F)$ and $\liealg{d}_n(\F)$ are nilpotent, $\liealg{t}_n(\F)$ is not nilpotent, as it contains specifically diagonal matrices. The explicit expression for $\liealg{n}_n(\F)$ agrees the nilpotency of upper triangular matrices:
     \[
-        \liealg{n}_n(\F)^k = \{ (g_{ij}) \mid g_{ij} = 0 \forall i + k \geq j \}
+        \liealg{n}_n(\F)^k = \{ (g_{ij}) \mid g_{ij} = 0,\ \forall i + k \geq j \}
     \]
 \end{example}
 
 \begin{remark}
-    Similarly the properties of nilpotent groups extend to nilpotent Lie algebras:
+    Similarly, the properties of nilpotent groups extend to nilpotent Lie algebras:
     \begin{enumerate}
         \item If a Lie algebra $L$ is nilpotent, and all its subalgebras and $\im \phi$ for all $\phi: L \to L'$ homomorphism are nilpotent. 
         \item If $L/Z(L)$ is nilpotent, then $L$ is nilpotent.
@@ -528,7 +528,7 @@ With the notion of ``raising a power'' for Lie algebras, we can extend the defin
 \end{lemma}
 
 \begin{proof}
-    Since $L$ is nilpotent, there exists $n$ s.t. $L^n = 0$. Since $\ad(x)^n (y) \in L^n$, $\ad(x)^n = 0$.
+    Since $L$ is nilpotent, there exists $n$ s.t. $L^n = 0$. For all $x, y \in L$, since $(\ad(x))^n (y) \in L^n$, $(\ad(x))^n = 0$.
 \end{proof}
 
 \textstart
@@ -553,7 +553,7 @@ We now seek prove the converse. From now on, assume that $\F$ is a field of char
 To prove Engel's theorem, we first prove the following theorem:
 
 \begin{theorem}\label{thm: 0 is eigenvalue of lie algebra of nilpotent endomorphisms}
-    Let $L$ be a subalgebra of $\gl(V)$, for any vector space $V$ s.t. $\dim V$ is finite. If $L$ consists of nilpotent endomorphisms and $V \neq 0$, then there exists a nonzero $v \in V$ s.t. $L \cdot v = 0$, i.e. 0 is always an eigenvalue of $L$.
+    Let $L$ be a subalgebra of $\gl(V)$, for some vector space $V$ where $\dim V$ is finite. If $L$ consists of nilpotent endomorphisms and $V \neq 0$, then there exists a nonzero $v \in V$ s.t. $L \cdot v = 0$, i.e. 0 is always an eigenvalue of $L$.
 \end{theorem}
 \nogap
 \begin{remark}
@@ -565,7 +565,7 @@ To prove Engel's theorem, we first prove the following theorem:
     \begin{itemize}
         \item $\dim L = 0$. Then any nonzero $v \in V$ works (the result is vacuous).
         \item $\dim L = 1$. Then $L$ can be written as the linear span of a single element $L = \linspan{\ell}$. $\ell$ being nilpotent implies that its only eigenvalue is 0. Therefore for any $v$ being an eigenvector of $L$, $\ell v = 0 \implies L \cdot v = 0$.
-        \item \emph{Inductive Step.} Let $K \subsetneq L$ be a maximal subalgebra. (This can be 0, which degenerates to the case of $\dim L = 0$) $K \neq L$ implies that $\dim K < \dim L$, giving $\dim (L/K) < \dim L$. Now take $V = L/K$, and apply the inductive hypothesis: there exists a nonzero $v + K \in L/K$ s.t. $(L/K) \cdot (v + K) = 0$, i.e. $L\cdot v \in K$. Recall that the action of Lie algebra on itself is via adjoint representation, i.e. we have $[y, x] \in K$ for all $y \in K$ and $x \in L$. Since $K$ is maximal in $L$, $\dim K = \dim L - 1$. Therefore, we can write $L = \linspan{K, x}$. By the inductive hypothesis, there exists a nonzero $v \in V$ s.t. $K \cdot v = 0$. Denote all such elements by $W := \{ v \in V \mid K\cdot v = 0 \}$. We now seek to prove that this set is also annihilated by $L$. 
+        \item \emph{Inductive Step.} Let $K \subsetneq L$ be a maximal subalgebra (This can be 0, which degenerates to the case of $\dim L = 0$). $K \neq L$ implies that $\dim K < \dim L$, giving $\dim (L/K) < \dim L$. Now take $V = L/K$, and apply the inductive hypothesis: there exists a nonzero $v + K \in L/K$ s.t. $(L/K) \cdot (v + K) = 0$, i.e. $L\cdot v \in K$. Recall that the action of Lie algebra on itself is via adjoint representation, i.e. we have $[y, x] \in K$ for all $y \in K$ and $x \in L$. Since $K$ is maximal in $L$, $\dim K = \dim L - 1$. Therefore, we can write $L = \linspan{K, x}$. By the inductive hypothesis, there exists a nonzero $v \in V$ s.t. $K \cdot v = 0$. Denote all such elements by $W := \{ v \in V \mid K\cdot v = 0 \}$. We now seek to prove that this set is also annihilated by $L$. 
         
         First observe that for all $k \in K, w \in W$, $kxw = x(kw) - [x, k]w$. Inductive hypothesis on $K$ implies that $kw = 0$ and therefore $x(kw) = 0$; and inductive hypothesis on $L/K$ implies that $[x, k]w = 0$ for all $x \in L$. By definition of $W$, this gives $x \cdot w \in W$, i.e. $\linspan{x}$ is a subalgebra of $\gl(W)$. Since $\linspan{x}$ is 1-dimensional, IH implies that there exists $w_0 \in W$ s.t. $x \cdot w_0 = 0$. Then decomposing application of $L$ on $w_0$ gives $L \cdot w_0 = K \cdot w_0 + \F x \cdot w_0 = 0$.
     \end{itemize}
@@ -617,27 +617,26 @@ Using ``flags'' we can describe the theorem above in a language more resembling 
 \end{theorem}
 
 \begin{proof}
-    Similar to the proof of the previous result, proceed via applying induction on $\dim L$. The case of $\dim L = 1$ is given by any scalar. 
+    Proceed via applying induction on $\dim L$. The case of $\dim L = 1$ is given by any scalar. 
     
     First sketch the framework of the proof:
     \begin{itemize}
-        \item First define an ideal of codimension 1 in $L$. Using the inductive hypothesis to get a common eigenvector.
-        \item Verify that $L$ stabilizes a certain space containing that eigenvector. 
-        \item Find an eigenvector $z$ in that space s.t. $L + I + \F z$.
+        \item First define an ideal $I$ of codimension 1 in $L$. Use the inductive hypothesis to get a common eigenvector $v_0$.
+        \item Verify that $L$ stabilizes a certain space $W$ containing $v_0$. 
+        \item Find an element $z \in W$ s.t. $L = I + \F z$.
     \end{itemize}
     Now proceed the proof:
     \begin{itemize}
-        \item \bu{Step 1}. Since $\dim L > 0$ and $L$ is solvable, $[L, L] \subsetneq L$ (otherwise the derived series will have identical terms and thus do not terminate). By definition $L/[L, L]$ is abelian.\footnote{This quotient is to ensure that there exists such a codimension-1 subspace.} Then any subspace $I \subseteq L/[L, L]$ will be an ideal. Take $I' \subseteq L/[L, L]$ be an ideal of codimension 1. Take its preimage $I \subseteq L$ of the quotient map, which is an ideal of codimension 1 in $L$. Inductive hypothesis implies that there exists nonzero $v \in V$ s.t. for all $x \in I$, $x \cdot v = \lambda(x)v$. Fix $\lambda$ and define $W := \{ w \in V \mid x \cdot w = \lambda w, \forall x \in I \}$. Then $v \in V$ implies that $W \neq 0$, which is a nontrivial space fixed by $I$.
+        \item \bu{Step 1}. Since $\dim L > 0$ and $L$ is solvable, $[L, L] \subsetneq L$ (otherwise the derived series will have identical terms and thus do not terminate, contradicting the hypothesis that $L$ is solvable). By definition $L/[L, L]$ is abelian.\footnote{This quotient is to ensure that there exists such a codimension-1 subspace.} Then any subspace $I \subseteq L/[L, L]$ will be an ideal. Take $I' \subseteq L/[L, L]$ be an ideal of codimension 1. Take its preimage $I \subseteq L$ of the quotient map, which is an ideal of codimension 1 in $L$. Inductive hypothesis implies that there exists nonzero $v \in V$ s.t. for all $x \in I$, $x \cdot v = \lambda(x)v$. Fix $\lambda$ and define $W := \{ w \in V \mid x \cdot w = \lambda w, \forall x \in I \}$. $v \in V$ implies that $W$ is nontrivial and fixed by $I$.
         \item \bu{Step 2}. We now want to show that the space is actually fixed by $L \supset I$. Use the same trick as the one in the previous proof: Let $w \in W, x \in L$; by definition, for all $y \in I$ we have the equality
         \begin{equation}\tag{$\ast$}\label{eq: transforming L, I application}
             (yx) w = xyw - [x, y]w = \lambda(y) xw - \lambda([x, y]) w
         \end{equation}
-        To show that $xw \in W$, it suffices to show that $y xw = \lambda(y) xw$, i.e. $\lambda([x, y]) = 0$. Let $n > 0$ be the smallest integer s.t. $\{ w, xw, \cdots, x^{n-1}w \}$ are linearly independent. Define $W_i = \linspan{w, xw, \cdots, x^{i-1}w}$. It is clear that there are finitely many distinct $W_i$s, as $W_{n+j} = W_n$ for all $j \in \Z_{\geq 0}$; and $x W_n \subseteq W_n$. Eq. \eqref{eq: transforming L, I application} implies that $y x^i w = \lambda(y) x^i w$ for all $i$, i.e. $I W_n \subseteq W_n$. That is, $y$ is an upper triangular matrix w.r.t. the basis $\{ w, xw \cdots, x^{n-1}w \}$; and diagonal entries are all $\lambda(y)$, i.e. for all $y \in I, \Tr_{W_n}(y) = n \lambda(y)$. Since $I$ is an ideal, $y \in I \implies [x, y] \in I$, i.e. $\Tr_{W_n}([x, y]) = \lambda([x, y])$. However, $\Tr_{W_n}([x, y]) = 0$ as $\Tr_{W_n}(xy) = \Tr_{W_n}(yx)$ for al $x, y \in L$. This thus gives the desired result $\lambda([x, y]) = 0$.
+        To show that $xw \in W$, it suffices to show that $y xw = \lambda(y) xw$, i.e. $\lambda([x, y]) = 0$. Let $n > 0$ be the smallest integer s.t. $\{ w, xw, \cdots, x^{n-1}w \}$ are linearly independent. Define $W_i = \linspan{w, xw, \cdots, x^{i-1}w}$. It is clear that there are finitely many distinct $W_i$s, as $W_{n+j} = W_n$ for all $j \in \Z_{\geq 0}$; and $x W_n \subseteq W_n$. Eq. \eqref{eq: transforming L, I application} implies that $y x^i w = \lambda(y) x^i w$ for all $i$ (as $x^i = 0$), i.e. $I W_n \subseteq W_n$. That is, $y$ is an upper triangular matrix w.r.t. the basis $\{ w, xw \cdots, x^{n-1}w \}$; and diagonal entries are all $\lambda(y)$, i.e. for all $y \in I, \Tr_{W_n}(y) = n \lambda(y)$. Since $I$ is an ideal, $y \in I \implies [x, y] \in I$, i.e. $\Tr_{W_n}([x, y]) = \lambda([x, y])$. However, $\Tr_{W_n}([x, y]) = 0$ as $\Tr_{W_n}(xy) = \Tr_{W_n}(yx)$ for all $x, y \in L$, giving $\lambda([x, y]) = 0$.
         \item \bu{Step 3}. Since $I$ is codimension-1, we can write $L = I + \F z$ for some $z \in L$. Since $\F$ is assumed to be algebraically closed, there exists eigenvector $v_0 \in W$ s.t. $z v_0 = c v_0$ for all $z \in L$ with the corresponding $c \in \F$. Furthermore by definition of $W$, for all $y \in I$, $y \cdot v_0 = \lambda(y) v_0$, i.e. $v_0$ is a common eigenvector of $L$. 
     \end{itemize}
 \end{proof}
 
-\textstart
 With the above result, we can state the following theorem (as a corollary):
 
 \begin{theorem}[Lie]\label{thm: Lie}
@@ -691,12 +690,12 @@ With the above result, we can state the following theorem (as a corollary):
 \end{lemma}
 
 \begin{proof}
-    Use the fact that semisimple endomorphisms are diagonalizable. Fix a basis $\{ v_1, \dots, v_n \}$ of $V$ s.t. the matrix representation of $x$ is $\diag( a_1, \dots, a_n )$. Denote the basis of $\gl(V)$ by $\{ e_{ij} \}$. Notice $\ad(x)(e_{ij}) - (a_i - a_j) e_{ij}$, which implies that $\ad(x)$ is diagonalizable.
+    Use the fact that semisimple endomorphisms are diagonalizable. Fix a basis $\{ v_1, \dots, v_n \}$ of $V$ s.t. the matrix representation of $x$ is $\diag( a_1, \dots, a_n )$. Denote the basis of $\gl(V)$ by $\{ e_{ij} \}$. Notice $\ad(x)(e_{ij}) = (a_i - a_j) e_{ij}$, which implies that $\ad(x)$ is diagonalizable.
 \end{proof}
 
-\begin{lemma}
-    Let $x \in \End(V)$ with its Jordan Decomposition given by $x = x_s + x_n$. Then the Jordan Decomposition of $\ad(x)$ is given by $\ad(x) = \ad(x_s) + \ad(x_n)$.
-\end{lemma}
+\begin{proposition}
+    Let $x \in \End(V)$ with its Jordan Decomposition $x = x_s + x_n$. Then the Jordan Decomposition of $\ad(x)$ is given by $\ad(x) = \ad(x_s) + \ad(x_n)$.
+\end{proposition}
 
 \begin{proof}
     By Lemma \ref{lem: nilpotent implies ad-nilpotent} amd \ref{lem: semisimple implies adjoint is semisimple}, we know $\ad(x_s)$ is semisimple, and $\ad(x_n)$ is nilpotent. From Proposition \ref{prop: Jordan Decomposition} we know that such $\ad(x_s)$ and $\ad(x_n)$ are unique as long as we can show that they commute. This is indeed the case as $\ad(\cdot)$ gives a representation, i.e. the commutator is given by the Lie bracket
@@ -707,11 +706,11 @@ With the above result, we can state the following theorem (as a corollary):
 \end{proof}
 
 \begin{lemma}\label{lem: prep for Cartan's 1st Criterion}
-    Let $A \subseteq B \subseteq \gl(V)$ be subspaces, and define $M := \{ x \in \gl(V) \mid [x, B] \subseteq A \}$. For $x \in M$, if for any $y \in M$ we have $\Tr(xy) = 0$, then $x$ is nilpotent.
+    Let $A \subseteq B \subseteq \gl(V)$ be subspaces, and define $M := \{ x \in \gl(V) \mid [x, B] \subseteq A \}$. For fixed $x \in M$, if for any other $y \in M$ we have $\Tr(xy) = 0$, then $x$ is nilpotent.
 \end{lemma}
 
 \begin{proof}
-    Try to use Jordan Decomposition, by showing that the semisimple component is zero. Write $x = x_s + x_n$ as Jordan Decomposition. Fix a basis $\{ v_1, \dots, v_n \}$ of $V$ s.t. $x_s$ can be represented as a diagonal matrix $\diag( a_1, \dots, a_n )$. SInce we work under the setting of $\fchar{\F} = 0$, $\Q \subseteq \F$. Let $E$ be the subspace spanned by the eigenvalues $a_1, \dots, a_n$ over $\Q$, in $\F$. We need to show $E = 0$. Since $V$ is finite dimensional, it suffices to show that its dual $E^* := \Hom(E, \Q) = 0$ as we have the isomorphism $E \simeq E^*$.
+    Try to use Jordan Decomposition, by showing that the semisimple component is zero. Write $x = x_s + x_n$ as Jordan Decomposition. Fix a basis $\{ v_1, \dots, v_n \}$ of $V$ s.t. $x_s$ can be represented as a diagonal matrix $\diag( a_1, \dots, a_n )$. Since we work under the setting of $\fchar{\F} = 0$, $\Q \hookrightarrow \F$. Let $E \subseteq \F$ be the subspace (viewing $\F$ as a $\Q$-vector space) spanned by the eigenvalues $a_1, \dots, a_n$ over $\Q$. We need to show $E = 0$. Since $V$ is finite dimensional, it suffices to show that its dual $E^* := \Hom(E, \Q) = 0$ as we have the isomorphism $E \simeq E^*$.
 
     Let $f \in E^*$, and $y \in \gl(V)$ s.t. $y = \diag(f(a_1), \dots, f(a_n))$. Let $\{ e_{ij} \}$ be the standard basis of $\gl(V)$. In the proof of Lemma \ref{lem: semisimple implies adjoint is semisimple}, we have shown that $\ad(x_s)(e_{ij}) = (a_i - a_j) e_{ij}$, giving $\ad(y)(e_{ij}) = (f(a_i) - f(a_j))e_{ij}$. By Lagrange interpolation, there exists $r \in \F[T]$ s.t. $r(a_i - a_j) = f(a_i - a_j)$. By Lemma \ref{lem: semisimple implies adjoint is semisimple}, $\ad(x_s)$ gives the semisimple component of $\ad(x)$, i.e. there exists $p \in \F[T]$ s.t. $p(\ad(x)) = \ad(x_s)$, and $p(0) = 0$ (by Proposition \ref{prop: Jordan Decomposition}). Applying $r$ on both side gives
     \[
@@ -926,7 +925,7 @@ We have seen previously how Lie algebras act on other structures, of which the m
 \end{remark}
 
 \begin{definition}[Casimir Element]
-    Let $L$ be a Lie algebra, with $\{x_i\}_{i = 1}^n$ a basis of $L$. Let $\beta$ be an arbitrary bilinear map on $L$, and $\{y_i\}_{i = 1}^n$ the dual of $\{x_i\}_{i = 1}^n$ w.r.t. $\beta$. Given a represnetation $\phi: L \to \gl(V)$, the \textbf{Casimir element} of $\phi$ w.r.t. $\beta$ is defined as
+    Let $L$ be a Lie algebra, with $\{x_i\}_{i = 1}^n$ a basis of $L$. Let $\beta$ be an arbitrary bilinear map on $L$, and $\{y_i\}_{i = 1}^n$ the dual of $\{x_i\}_{i = 1}^n$ w.r.t. $\beta$. Given a representation $\phi: L \to \gl(V)$, the \textbf{Casimir element} of $\phi$ w.r.t. $\beta$ is defined as
     \[
         C_{\phi}(\beta) = C_{\phi} = \sum_{i = 1}^n \phi(x_i) \phi(y_i) \in \End(V)
     \]
@@ -1034,6 +1033,34 @@ We have seen previously how Lie algebras act on other structures, of which the m
 
 \section{Representation of $\liealg{sl}_2(\F)$}
 
+\textstart
+Let $L = \liealg{sl}_2(\F)$ where $\F$ is algebraically closed and characteristic-0. Let $V$ be an arbitrary finite-dimensional vector space, and $\phi: L \to \gl(V)$ an $L$-representation. We seek to classify such $V$. 
+
+Recall that the standard basis is given by
+\[
+    x = \begin{pmatrix}
+        0 & 1 \\ 0 & 0     
+    \end{pmatrix}, \quad
+    h = \begin{pmatrix}
+        1 & 0 \\ 0 & -1
+    \end{pmatrix}, \quad
+    y = \begin{pmatrix}
+        0 & 0 \\ 1 & 0
+    \end{pmatrix}
+\]
+which are related via $[h, x] = 2x, [h, y] = -2y, [x, y] = h$.
+
 \section{Root System}
+
+\begin{definition}[Euclidean Space]
+    A vector space $E$ is an \textbf{Euclidean space} if it is finite dimensional over $\R$, with an inner product (bilinear, and $(v, v) \geq 0$ for all $v$) $(-, -)$.
+\end{definition}
+
+\begin{definition}[Root System]
+    A \textbf{root system} $\Phi \subseteq E$ is a finite set in $E$ s.t.
+    \begin{enumerate}
+        \item 
+    \end{enumerate}
+\end{definition}
 
 \end{document}
