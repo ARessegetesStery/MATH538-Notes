@@ -3,7 +3,7 @@
 
 \begin{document}
 
-\Makepagesectionhead{MATH 538}{Lie Algebra}{ARessegetes Stery}
+\Makepagesectionhead{MATH 538}{Basic Lie Algebra}{ARessegetes Stery}
 
 \tableofcontents  
 \clearpage
@@ -693,7 +693,7 @@ With the above result, we can state the following theorem (as a corollary):
     Use the fact that semisimple endomorphisms are diagonalizable. Fix a basis $\{ v_1, \dots, v_n \}$ of $V$ s.t. the matrix representation of $x$ is $\diag( a_1, \dots, a_n )$. Denote the basis of $\gl(V)$ by $\{ e_{ij} \}$. Notice $\ad(x)(e_{ij}) = (a_i - a_j) e_{ij}$, which implies that $\ad(x)$ is diagonalizable.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition}\label{prop: Jordan Decomposition of ad}
     Let $x \in \End(V)$ with its Jordan Decomposition $x = x_s + x_n$. Then the Jordan Decomposition of $\ad(x)$ is given by $\ad(x) = \ad(x_s) + \ad(x_n)$.
 \end{proposition}
 
@@ -1048,19 +1048,168 @@ Recall that the standard basis is given by
         0 & 0 \\ 1 & 0
     \end{pmatrix}
 \]
-which are related via $[h, x] = 2x, [h, y] = -2y, [x, y] = h$.
+which are related via $[h, x] = 2x, [h, y] = -2y, [x, y] = h$. Further by the fact that nilpotency and semisimplicity propagates through morphisms, given $\phi: L \to \gl(V)$ a finite-dimensional representation and the Jordan Decomposition of $L \ni x = x_s + x_n$, we have the Jordan Decomposition of $\phi(x)$ as $\phi(x) = \phi(x_s) + \phi(x_n)$.
 
-\section{Root System}
-
-\begin{definition}[Euclidean Space]
-    A vector space $E$ is an \textbf{Euclidean space} if it is finite dimensional over $\R$, with an inner product (bilinear, and $(v, v) \geq 0$ for all $v$) $(-, -)$.
+\begin{notation}
+    For $V$ on which $\liealg{sl}_2(\F)$ gives a representation, decompose
+    \[
+        V = \bigoplus_{\lambda \in \F, V_{\lambda \neq 0}} V_{\lambda} 
+        \quad \text{where} \quad
+        V_{\lambda} = \{ v \in V \mid hv := \phi(h)v = \lambda v \}
+    \]
+    In the following section we reserve the letters $x$, $h$ and $y$ to denote the basis elements of $\liealg{sl}_2(\F)$.
+\end{notation}
+\nogap
+\begin{definition}[Weight]
+    If $V_{\lambda} \neq 0$, then $\lambda$ is a \textbf{weight} of $V$.
 \end{definition}
 
-\begin{definition}[Root System]
-    A \textbf{root system} $\Phi \subseteq E$ is a finite set in $E$ s.t.
-    \begin{enumerate}
-        \item 
+\begin{lemma}\label{lem: transition between eigenspaces under action of sl2}
+    If $v \in V_{\lambda}$, then $xv \in V_{\lambda + 2}$, $yv \in V_{\lambda - 2}$.
+\end{lemma}
+
+\begin{proof}
+    Compute
+    \[
+        h(xv) = [h, x]v + x(hv) = 2xv + \lambda xv = (\lambda + 2)xv
+        \quad \text{and} \quad
+        h(yv) = [h, y]v + y(hv) = -2yv + \lambda yv = (\lambda - 2)yv
+    \]
+\end{proof}
+
+\begin{example}
+    Consider $V = \F^2$ with the standard representation of $\liealg{sl}_2(\F)$ given by $\phi(x) = x$. The weights are $\pm 1$, with the corresponding eigenspaces $V_1 = \left(\begin{smallmatrix} \cdot \\ 0 \end{smallmatrix}\right)$ and $V_{-1} = \left(\begin{smallmatrix} 0 \\ \cdot \end{smallmatrix}\right)$.
+\end{example}
+
+\begin{definition}[Maximal vector]
+    If $\lambda$ is a weight and $\lambda + 2$ is not a weight, then any $v \in V_{\lambda} \smallsetminus \{0\}$ is called a \textbf{maximal vector} of weight $\lambda$.
+\end{definition}
+\nogap
+\begin{remark}
+    It is allowed that the maximal vector is 0. Maximal vectors always exist.
+\end{remark}
+
+\textstart
+From now on assume that for all $i$, $V_i$ is irreducible. Without loss of generality we can decompose all representations into irreducible components and study those.
+
+\begin{lemma}\label{lem: sl2 action on maximal vector}
+    Let $v_0$ be a maximal vector of weight $\lambda$. Define $v_{-1} = 0$, and $v_i = \frac{1}{i!} y^i v_0$ for $i \geq 0$. Then for $i \geq 0$
+    \[
+        h v_i = (\lambda - 2i) v_i, \quad y v_i = (i + 1) v_{i+1}, \quad x v_i = (\lambda - i + 1) v_{i-1}
+    \]
+\end{lemma}
+
+\begin{proof}
+    For the first equality, by Lemma \ref{lem: transition between eigenspaces under action of sl2}, we know $y^i v_0 \in V_{\lambda - 2i}$ given that $v_0 \in V_{\lambda}$. Then
+    \[
+        h v_i = \frac{1}{i!} \underbrace{h(y^i v_0)}_{\in V_{\lambda - 2i}} = \frac{1}{i!} (\lambda - 2i) y^i v_0 = (\lambda - 2i) v_i
+    \]
+    The second equality results directly from definition
+    \[
+        y v_i = \frac{1}{i!} y^{i+1} v_0 = (i+1) \frac{1}{(i+1)!} y^i v_0 = (i+1) v_{i+1}
+    \]
+    For the third equality, prove by induction. The base case is given by the convention $v_{-1} = 0$. For inductive step we have
+    \begin{align*}
+        ix v_i = xyv_{i-1}
+        & = [x, y] v_i + yxv_i \\
+        & = hv_i + yxv_i \\
+        & = (\lambda - 2(i-1)) v_i + (\lambda - i + 2) y v_{i-2} & \text{(By induction and the first equality)} \\
+        & = (\lambda - 2i + 2) v_{i-1} + (i - 1)(\lambda - i + 2) v_{i-1} & \text{(By the second equality)} \\
+        & = i (\lambda - i + 1) v_{i-1}
+    \end{align*}
+    Dividing both sides by $i$ gives the desired result.
+\end{proof}
+
+\begin{theorem}\label{thm: classification of irreducible sl2 representation}
+    Let $L$ be a Lie algebra, and $V$ be an irreducible $L$-module of dimension greater than 1. Then
+    \begin{enumerate}[label=\arabic*)]
+        \item The weights of $V$ are $m, (m-2), \cdots, -(m-2), -m$ with the dimension of all associated eigenspaces being 1. This implies that up to scaling by $\F^{\times}$, there is a unique maximal vector whose weight is $m$.
+        \item The set $\{v_0, v_1, \cdots, v_m\}$ where
+        \[
+            v_0 = 0, \quad v_i = \frac{1}{i!} y^i v_0
+        \]
+        gives a basis of $V$. In particular, there is at most one such $V$ for the specific $m$, up to isomorphism.
     \end{enumerate}
+\end{theorem}
+
+\begin{proof}
+    First prove that $\{ v_0, \dots, v_m \}$ gives a basis. By Lemma \ref{lem: sl2 action on maximal vector}, we know that all nonzero $v_i$s are in different $h$-eigenspaces, and are therefore linearly independent. To show that they give a basis, it suffices to verify that they span $V$. Since $V$ is finite-dimensional, there exists some $m'$ s.t. $v_{m'} \neq 0$ and $v_{m'+1} = 0$ ($v_{m'+1}$ cannot be a linear combination of other $v_i$s as they are in different eigenspaces and therefore are linearly independent!). Consider $W = \mathrm{span}_{\F}\{ v_0, \dots, v_{m'} \}$, which is an $L$-subrepresentation of $V$. $W \neq 0$ as in particular $v_0 \in W$. $V$ being irreducible implies that $W = W'$, and therefore $m = m'$. Since the process fixes $v_i$s, this construction is unique up to isomorphisms.
+
+    Lemma \ref{lem: transition between eigenspaces under action of sl2} gives that the eigenvalues differ by 2. To prove the first assertion, it suffices to verify that $v_i \in V_{m-2i}$, which are fixed by the highest weight. Let the highest weight be $\lambda$, i.e. $h v_0 = \lambda v_0$ (Lemma \ref{lem: transition between eigenspaces under action of sl} gives that application by $y$ reduces the eigenvalue by 2, while here the index increases by 1.). Since $y v_m = (m+1) v_{m+1} = 0$, we have
+    \[
+        0 = x y v_m = ([x, y] + y x) v_m = h v_m + (\lambda - m + 1) y v_m = (\lambda - 2m) v_m + (\lambda - m + 1) m v_m
+    \]
+    which enforces the coefficient to be 0:
+    \[
+        0 = (\lambda - 2m) + (\lambda - m + 1) m = (\lambda - m) (m + 1) \implies \lambda = m
+    \]
+    The dimensions of the eigenspaces are 1 as $h$ acts linearly on each eigenspace.
+\end{proof}
+
+\begin{corollary}
+    From the result of Theorem \ref{thm: classification of irreducible sl2 representation} and Lemma \ref{lem: sl2 action on maximal vector} we can write the corresponding action of $\liealg{sl}_2(\F)$ on $V$ w.r.t. the basis $\{ v_0, \dots, v_m \}$ as defined above:
+    \[
+        h = 
+        \begin{pmatrix}
+            m & & & & \\
+            & m-2 & & & \\
+            & & \ddots & & \\
+            & & & -m+2 & \\
+            & & & & -m
+        \end{pmatrix}, 
+        \quad
+        x = 
+        \begin{pmatrix}
+            0 & m & & & & \\
+            & 0 & m-1 & & & \\
+            & & \ddots & \ddots & & \\
+            & & & \ddots & 2 & \\
+            & & & & 0 & 1 \\
+            & & & & & 0 \\
+        \end{pmatrix},
+        \quad
+        y = 
+        \begin{pmatrix}
+            0 & & & & & \\
+            1 & 0 & & & & \\
+            & 2 & \ddots & & & \\
+            & & \ddots & \ddots & & \\
+            & & & m-1 & 0 & \\
+            & & & & m & 0 \\
+        \end{pmatrix}
+    \]
+\end{corollary}
+\nogap
+\begin{corollary}
+    Let $V$ be a finite-dimensional $L$-module. Then the eigenvalues of $h$ are all integers, and $\dim V_m = \dim V_{-m}$ for all $m$. Moreover, the number of summands in any decomposition of $V$ into irreducible $L$-submodules is $\dim V_0 + \dim V_1$.
+\end{corollary}
+
+\begin{proof}
+    The case where $V = 0$ is trivial. If $V$ is not the zero vector space, then we can write $V = W_1 \oplus \cdots \oplus W_k$ where $W_i$ is irreducible for all $i$. Theorem \ref{thm: classification of irreducible sl2 representation} gives that the eigenvalues of $h$ on $W_i$ are integers, and therefore all eigenvalues of $h$ on $V$ are all integers.
+
+    Further notice that for each irreducible representation $W_i$, the parities of its eigenvalues are given by the parity of $m_i$. Further we have $\dim W_i = m_i$ gives $m_i \geq 1$, i.e. either $\dim (W_i)_0 = 1$ or $\dim (W_i)_1$ is 1 (From Theorem \ref{thm: classification of irreducible sl2 representation} we know that all the eigenspaces are 1-dimensional). Summing over $i$ gives the number of summands for $V$.
+\end{proof}
+
+\begin{definition}[Verma Module]
+    For $m \geq 0$, Denote $V(m) = \F^{m+1}$ with the (ordered) basis $\{ v_0, \dots, v_m \}$. Defining the action of $\liealg{sl}_2(\F)$ on $V(m)$ as in Lemma \ref{lem: sl2 action on maximal vector} gives $V(m)$ an $\liealg{sl}_2(\F)$-module structure. $V(m)$ is called the \textbf{Verma module} of highest weight $m$.
 \end{definition}
+\nogap
+\begin{remark}
+    $V(m)$ is an irreducible $\liealg{sl}_2(\F)$-module, and is the unique irreducible $\liealg{sl}_2(\F)$-module of dimension $(m+1)$.
+\end{remark}
+
+\begin{remark}
+    We can extend Verma modules to non-integer $m$s, denoted $W(m)$. Start with $v_0$ ``with weight $m$'' (we don't have non-integer weights in previous definitions!) and formally designate
+    \[
+        v_i = y^i v_0, \quad v_{-1} = x^i v_0, \quad \text{and} \quad W(m) = \sum_{i \in \Z} \F v_i
+    \]
+    Requiring $h v_0 = m v_0$ we have the same action as proven in Lemma \ref{lem: sl2 action on maximal vector}. It follows that 
+    \[
+        W(m)_{\infty} := \sum_{i \notin \llbracket 0, m \rrbracket} \F v_i
+    \]
+    is $\liealg{sl}_2(\F)$-stable, and $W(m)/W(m)_{\infty} = V(m)$.
+
+    With the general definition and setting $m$ to be integers, the definition reduces to that of the normal Verma module.
+\end{remark}
 
 \end{document}

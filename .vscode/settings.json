@@ -21,9 +21,13 @@
         "preimage",
         "Schur",
         "semisimple",
+        "semisimplicity",
         "subalgebra",
         "subalgebras",
+        "subrepresentation",
+        "summands",
         "surjective",
-        "symplectic"
+        "symplectic",
+        "Verma"
     ]
 }
